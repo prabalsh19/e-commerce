@@ -43,19 +43,20 @@ ul {
   }
 }
 
+/* Styles for tab (portrait) and up */
 @media screen and (width>= 768px) {
   body {
-    font-size: 14px;
+    font-size: 16px;
   }
   .product-category-container {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
-/* Styles for Tablet and below */
+/* Styles for Laptop and up */
 @media screen and (width>= 1024px) {
   body {
-    font-size: 16px;
+    font-size: 18px;
   }
   .product-category-container {
     grid-template-columns: repeat(4, 1fr);

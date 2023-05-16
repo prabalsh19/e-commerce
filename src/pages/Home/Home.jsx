@@ -1,4 +1,3 @@
-import Footer from "../../components/footer/Footer";
 import ProductCategory from "../../components/productCategory/ProductCategory";
 
 function Home() {
@@ -6,7 +5,6 @@ function Home() {
     <>
       <div className="hero">
         <ProductCategory />
-        <Footer />
       </div>
     </>
   );

@@ -5,6 +5,7 @@ ul {
   cursor: pointer;
 }
 .nav-container {
+  background-color: black;
   position: sticky;
   top: 0;
   left: 0;
@@ -17,6 +18,9 @@ ul {
   grid-template-columns: 3fr 5fr 4fr;
   justify-content: space-between;
   align-items: center;
+}
+.nav > a {
+  color: white;
 }
 .nav__search-container {
   display: flex;
@@ -54,14 +58,14 @@ ul {
 .nav-links a {
   display: inline-block;
   margin-right: 1rem;
-  min-width: 20%;
+  min-width: 22%;
   text-align: center;
-  color: black;
+  color: white;
   text-decoration: none;
 }
 .nav-links a:hover {
   font-weight: bold;
-  transform: scale(1.1);
+  transform: scale(1.08);
   transition-duration: 0.1s;
 }
 @media screen and (max-width: 800px) {

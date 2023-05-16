@@ -7,12 +7,13 @@ ul {
 .product-category-container {
   display: flex;
   gap: 2rem;
+  flex-wrap: wrap;
   margin-top: 5rem;
   padding: 1rem;
+  min-height: 70vh;
 }
 
 .product-category-item {
-  max-width: fit-content;
   padding: 1rem;
   display: flex;
   flex-direction: column;
@@ -30,4 +31,17 @@ ul {
 .product-category-item span {
   font-size: larger;
   color: black;
+}
+/* Styles for tablets (portrait) and up */
+@media (min-width: 768px) {
+  body {
+    font-size: 16px;
+  }
+}
+
+/* Styles for laptops and up */
+@media screen and (min-width: 1024px) {
+  body {
+    font-size: 18px;
+  }
 }

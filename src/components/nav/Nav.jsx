@@ -1,11 +1,13 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import SearchIcon from "@mui/icons-material/Search";
 import "./Nav.css";
 export default function Nav() {
   return (
     <div className="nav-container">
       <nav className="nav">
-        <h1 className="nav__logo">COMMERCE</h1>
+        <NavLink to="/">
+          <h1 className="nav__logo">COMMERCE</h1>
+        </NavLink>
         <div className="nav__search-container">
           <input type="text" />
           <button>

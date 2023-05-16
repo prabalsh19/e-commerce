@@ -1,4 +1,4 @@
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import SearchIcon from "@mui/icons-material/Search";
 import "./Nav.css";
 export default function Nav() {
@@ -17,10 +17,10 @@ export default function Nav() {
 
         <div>
           <ul className="nav-links">
-            <Link path="/products">Products</Link>
-            <Link path="/wishlist">Wishlist</Link>
-            <Link path="/cart">My Cart</Link>
-            <Link path="/account">Account</Link>
+            <NavLink to="/products">Products</NavLink>
+            <NavLink to="/wishlist">Wishlist</NavLink>
+            <NavLink to="/cart">My Cart</NavLink>
+            <NavLink to="/account">Account</NavLink>
           </ul>
         </div>
       </nav>

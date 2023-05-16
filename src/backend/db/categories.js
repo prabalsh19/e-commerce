@@ -8,20 +8,30 @@ import { v4 as uuid } from "uuid";
 export const categories = [
   {
     _id: uuid(),
-    categoryName: "fiction",
-    description:
-      "literature in the form of prose, especially novels, that describes imaginary events and people",
+    alt: "product",
+    category: "Wired",
+    image:
+      "https://res.cloudinary.com/dgzehngjw/image/upload/v1651052849/evolt-ecommerce/1_nfr2fe.jpg",
   },
   {
     _id: uuid(),
-    categoryName: "non-fiction",
-    description:
-      "Non-fiction is writing that gives information or describes real events, rather than telling a story.",
+    alt: "product",
+    category: "Noise Cancelling",
+    image:
+      "https://res.cloudinary.com/dgzehngjw/image/upload/v1651052852/evolt-ecommerce/2_rf00wy.jpg",
   },
   {
     _id: uuid(),
-    categoryName: "horror",
-    description:
-      "Meant to cause discomfort and fear for both the character and readers, horror writers often make use of supernatural and paranormal elements in morbid stories that are sometimes a little too realistic.",
+    alt: "product",
+    category: "Wireless",
+    image:
+      "https://res.cloudinary.com/dgzehngjw/image/upload/v1651052856/evolt-ecommerce/3_kgau6t.jpg",
+  },
+  {
+    _id: uuid(),
+    alt: "product",
+    category: "Speaker",
+    image:
+      "https://res.cloudinary.com/dgzehngjw/image/upload/v1651052858/evolt-ecommerce/4_ipsjrk.jpg",
   },
 ];

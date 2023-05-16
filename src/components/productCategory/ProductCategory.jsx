@@ -19,7 +19,7 @@ function ProductCategory() {
   return (
     <ul className="product-category-container">
       {productCategoryList.map(({ img, name }) => (
-        <NavLink to={`product-category/${name.toLowerCase()}`}>
+        <NavLink to="/products">
           <li className="product-category-item">
             <img src={img} alt="" />
             <span>{name}</span>

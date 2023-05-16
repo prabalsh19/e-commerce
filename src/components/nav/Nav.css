@@ -6,6 +6,7 @@ ul {
 }
 .nav-container {
   background-color: black;
+  width: 100%;
   position: sticky;
   top: 0;
   left: 0;
@@ -59,7 +60,7 @@ ul {
   display: inline-block;
   margin-right: 1rem;
   min-width: 22%;
-  text-align: center;
+  text-align: end;
   color: white;
   text-decoration: none;
 }

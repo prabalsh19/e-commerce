@@ -1,0 +1,11 @@
+.products-page-container {
+  display: grid;
+  width: 100%;
+  grid-template-columns: 18% 1fr;
+  margin: 0 auto;
+}
+@media screen and (width<=1024px) {
+  .products-page-container {
+    grid-template-columns: 1fr;
+  }
+}

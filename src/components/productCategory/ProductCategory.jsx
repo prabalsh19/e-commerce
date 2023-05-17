@@ -1,28 +1,25 @@
 import { NavLink } from "react-router-dom";
+import axios from "axios";
+
 import "./ProductCategory.css";
+import { useEffect } from "react";
+import { useState } from "react";
 function ProductCategory() {
-  const productCategoryList = [
-    {
-      name: "Headphone",
-      img: "https://cdn.shopify.com/s/files/1/0057/8938/4802/files/Limited_Edition_small.svg?v=1682078654",
-    },
-    {
-      name: "Laptop",
-      img: "https://www.iconpacks.net/icons/1/free-laptop-icon-1399-thumb.png",
-    },
-    { name: "Smartphones", img: "https://svgsilh.com/svg/2113313.svg" },
-    {
-      name: "Speakers",
-      img: "https://cdn.shopify.com/s/files/1/0057/8938/4802/files/Bluethooth_Speakers_5f9cc9da-1798-4e56-9749-2e302d943b67_small.svg?v=1682078654",
-    },
-  ];
+  const [productCategoryList, setProductCategoryList] = useState([]);
+  useEffect(() => {
+    (async () => {
+      const response = await axios.get("/api/categories");
+      setProductCategoryList(response.data.categories);
+    })();
+  }, []);
+
   return (
     <ul className="product-category-container">
-      {productCategoryList.map(({ img, name }) => (
-        <NavLink to="/products">
+      {productCategoryList.map(({ id, image, category }) => (
+        <NavLink key={id} to="/products">
           <li className="product-category-item">
-            <img src={img} alt="" />
-            <span>{name}</span>
+            <img src={image} alt="" />
+            <span>{category}</span>
           </li>
         </NavLink>
       ))}

@@ -125,23 +125,6 @@ export const products = [
     discount: 18,
     rating: 4,
   },
-  {
-    _id: uuid(),
-    addedInYear: 2021,
-    brand: "bose",
-    type: "noise_cancelling",
-    productName: "Bose Touch Control,Triple Black",
-    alt: "Bose Touch Control",
-    image:
-      "https://res.cloudinary.com/dgzehngjw/image/upload/v1651056670/evolt-ecommerce/p8_udpu7y.jpg",
-    description:
-      "Bose QuietComfort Noise Cancelling Earbuds - Bluetooth Truly Wireless in Ear Earbuds, Noise Cancelling Earbuds with Touch Control,Triple Black",
-    price: "1500.00",
-    oldPrice: "3000.00",
-    inStock: true,
-    discount: 50,
-    rating: 4,
-  },
 
   {
     _id: uuid(),

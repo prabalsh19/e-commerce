@@ -28,6 +28,7 @@ ul {
   width: 15rem;
   height: 15rem;
   display: block;
+  margin-bottom: 2rem;
 }
 .product-category-item span {
   font-size: larger;

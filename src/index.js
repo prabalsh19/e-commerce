@@ -8,6 +8,7 @@ import Home from "./pages/Home/Home";
 import Products from "./pages/Products/Products";
 import Mockbee from "./pages/Mockbee/Mockbee";
 import ProductDetails from "./pages/Product Details/ProductDetails";
+import Cart from "./pages/Cart/Cart";
 
 // Call make Server
 makeServer();
@@ -26,6 +27,7 @@ const router = createBrowserRouter([
         path: "/products/product-details/:id",
         element: <ProductDetails />,
       },
+      { path: "/cart", element: <Cart /> },
     ],
   },
 ]);

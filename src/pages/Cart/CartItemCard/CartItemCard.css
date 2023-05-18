@@ -1,0 +1,44 @@
+.cart-card-container {
+  display: flex;
+  width: max-content;
+  gap: 1rem;
+  margin: 1rem auto;
+  background-color: white;
+  padding: 1rem 3rem;
+  border-radius: 1rem;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.cart-item-details > h4 {
+  margin-bottom: 15px;
+}
+.card-card__image {
+  width: 10rem;
+}
+.cart-prices-container {
+  display: flex;
+  gap: 1rem;
+}
+.cart-card-container__old-price {
+  text-decoration: line-through;
+  color: #9ca3af;
+}
+.cart-card-container__current-price {
+  font-weight: bold;
+}
+.cart-item-discount {
+  color: #388e3c;
+  font-weight: bold;
+  font-size: 1rem;
+}
+.cart-item-quantity {
+  margin-top: 1rem;
+  display: flex;
+  gap: 5px;
+}
+
+@media screen and (width<=768px) {
+  .card-card__image {
+    width: 5rem;
+  }
+}

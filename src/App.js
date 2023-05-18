@@ -5,14 +5,17 @@ import Footer from "./components/footer/Footer";
 import { ProductContextProvider } from "./context/ProductContext";
 
 import "./App.css";
+import { CartContextProvider } from "./context/CartContext";
 
 function App() {
   return (
     <>
       <ProductContextProvider>
-        <Nav />
-        <Outlet />
-        <Footer />
+        <CartContextProvider>
+          <Nav />
+          <Outlet />
+          <Footer />
+        </CartContextProvider>
       </ProductContextProvider>
     </>
   );

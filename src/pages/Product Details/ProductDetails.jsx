@@ -5,8 +5,10 @@ import { useParams } from "react-router-dom";
 import { ProductContext } from "../../context/ProductContext";
 import { useEffect } from "react";
 import StarIcon from "@mui/icons-material/Star";
+import { CartContext } from "../../context/CartContext";
 
 function ProductDetails() {
+  const { addItemToCart } = useContext(CartContext);
   const { products } = useContext(ProductContext);
   const [selectedProduct, setSelectedProduct] = useState();
   const { id } = useParams();
@@ -48,7 +50,10 @@ function ProductDetails() {
             </p>
           </div>
           <div className="action-buttons">
-            <button className="product-details__add-to-cart-btn">
+            <button
+              className="product-details__add-to-cart-btn"
+              onClick={() => addItemToCart(selectedProduct)}
+            >
               ADD TO CART
             </button>
             <button className="product-details__add-to-wishlist-btn">

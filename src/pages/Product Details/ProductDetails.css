@@ -39,6 +39,9 @@
 .product-details__discount {
   font-weight: bold;
 }
+.product-details__discount {
+  color: #388e3c;
+}
 .action-buttons {
   display: flex;
   gap: 1rem;
@@ -52,7 +55,7 @@
 }
 .product-details__add-to-cart-btn:hover {
   cursor: pointer;
-  text-shadow: 0 1px 0 currentColor;
+  font-weight: bold;
 }
 .product-details__add-to-wishlist-btn {
   width: 100%;
@@ -63,7 +66,8 @@
 }
 .product-details__add-to-wishlist-btn:hover {
   cursor: pointer;
-  text-shadow: 0 1px 0 currentColor;
+
+  font-weight: bold;
 }
 
 @media screen and (width<1024px) {

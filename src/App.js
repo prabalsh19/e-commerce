@@ -6,6 +6,7 @@ import { ProductContextProvider } from "./context/ProductContext";
 
 import "./App.css";
 import { CartContextProvider } from "./context/CartContext";
+import ScrollToTop from "./utils/ScrollToTop";
 
 function App() {
   return (
@@ -13,6 +14,8 @@ function App() {
       <ProductContextProvider>
         <CartContextProvider>
           <Nav />
+
+          <ScrollToTop />
           <Outlet />
           <Footer />
         </CartContextProvider>

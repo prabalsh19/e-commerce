@@ -29,6 +29,7 @@ ul {
   height: 15rem;
   display: block;
   margin-bottom: 2rem;
+  mix-blend-mode: multiply;
 }
 .product-category-item span {
   font-size: larger;

@@ -11,7 +11,7 @@ export const categories = [
     alt: "product",
     category: "Wired",
     image:
-      "https://res.cloudinary.com/dgzehngjw/image/upload/v1651052849/evolt-ecommerce/1_nfr2fe.jpg",
+      "https://res.cloudinary.com/dgzehngjw/image/upload/v1651056984/evolt-ecommerce/p12_auvdnf.jpg",
   },
   {
     _id: uuid(),

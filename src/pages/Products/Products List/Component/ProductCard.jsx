@@ -5,14 +5,19 @@ import "./ProductCard.css";
 import { NavLink } from "react-router-dom";
 import { useContext } from "react";
 import { CartContext } from "../../../../context/CartContext";
+import { WishlistContext } from "../../../../context/WishlistContext";
 
 function ProductCard({ product }) {
   const { id, image, productName, rating, price, oldPrice, discount } = product;
   const { addItemToCart } = useContext(CartContext);
+  const { addItemToWishlist } = useContext(WishlistContext);
 
   return (
     <div className="product-card">
-      <button className="add-to-wishlist-btn">
+      <button
+        onClick={() => addItemToWishlist(product)}
+        className="add-to-wishlist-btn"
+      >
         <FavoriteIcon sx={{ color: "grey", "&:hover": { color: "red" } }} />
       </button>
       <NavLink to={`product-details/${id}`}>

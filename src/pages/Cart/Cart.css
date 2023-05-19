@@ -2,7 +2,7 @@
   display: flex;
   margin: 1rem;
   gap: 3rem;
-
+  min-height: 80vh;
   justify-content: center;
 }
 

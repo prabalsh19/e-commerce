@@ -7,17 +7,20 @@ import { ProductContextProvider } from "./context/ProductContext";
 import "./App.css";
 import { CartContextProvider } from "./context/CartContext";
 import ScrollToTop from "./utils/ScrollToTop";
+import { WishlistContextProvider } from "./context/WishlistContext";
 
 function App() {
   return (
     <>
+      <ScrollToTop />
       <ProductContextProvider>
         <CartContextProvider>
-          <Nav />
+          <WishlistContextProvider>
+            <Nav />
+            <Outlet />
 
-          <ScrollToTop />
-          <Outlet />
-          <Footer />
+            <Footer />
+          </WishlistContextProvider>
         </CartContextProvider>
       </ProductContextProvider>
     </>

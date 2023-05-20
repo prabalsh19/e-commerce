@@ -11,6 +11,7 @@ import ProductDetails from "./pages/Product Details/ProductDetails";
 import Cart from "./pages/Cart/Cart";
 import Wishlist from "./pages/Wishlist/Wishlist.jsx";
 import Login from "./pages/Login/Login";
+import SignUp from "./pages/SignUp/SignUp";
 
 // Call make Server
 makeServer();
@@ -36,6 +37,7 @@ const router = createBrowserRouter([
       },
       { path: "/wishlist/product-details/:id", element: <ProductDetails /> },
       { path: "/login", element: <Login /> },
+      { path: "/sign-up", element: <SignUp /> },
     ],
   },
 ]);

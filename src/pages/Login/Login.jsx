@@ -3,7 +3,7 @@ import "./Login.css";
 import axios from "axios";
 import { AuthContext } from "../../context/AuthContext";
 import { useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -50,9 +50,12 @@ function Login() {
           id=""
         />
         {error.hasError && <span className="error-msg">{error.message}</span>}
-        <button type="submit" className="login-btn">
+        <button type="submit" className="auth-btn">
           Login
         </button>
+        <p className="move-to-signup-text">
+          Don't Have An Account? <Link to="/sign-up">Sign up</Link>
+        </p>
       </div>
     </form>
   );

@@ -1,0 +1,25 @@
+.show-pass-container {
+  align-self: flex-start;
+  margin-top: -10px;
+  margin-bottom: 20px;
+}
+.signup-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  min-height: 70vh;
+  max-width: 22rem;
+  margin: auto;
+}
+.signup-container > h2 {
+  margin-top: 0;
+}
+.signup-container > label {
+  align-self: flex-start;
+}
+.signup-container > input {
+  margin: 5px 0 20px 0;
+  width: 100%;
+  padding: 5px;
+}

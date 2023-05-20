@@ -10,8 +10,9 @@ import { WishlistContext } from "../../../../context/WishlistContext";
 function ProductCard({ product }) {
   const { _id, image, productName, rating, price, oldPrice, discount } =
     product;
-  const { addItemToCart } = useContext(CartContext);
+  const { cartItems, addItemToCart } = useContext(CartContext);
   const { addItemToWishlist } = useContext(WishlistContext);
+  const productExistInCart = cartItems.some((item) => item._id === _id);
 
   return (
     <div className="product-card">
@@ -44,12 +45,18 @@ function ProductCard({ product }) {
           <p className="discount">{discount}% OFF</p>
         </div>
       </NavLink>
-      <button
-        className="add-to-cart-btn"
-        onClick={() => addItemToCart(product)}
-      >
-        ADD TO CART
-      </button>
+      {productExistInCart ? (
+        <NavLink to="/cart">
+          <button className="add-to-cart-btn">GO TO CART</button>
+        </NavLink>
+      ) : (
+        <button
+          className="add-to-cart-btn"
+          onClick={() => addItemToCart(product)}
+        >
+          ADD TO CART
+        </button>
+      )}
     </div>
   );
 }

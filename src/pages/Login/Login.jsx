@@ -3,7 +3,7 @@ import "./Login.css";
 import axios from "axios";
 import { AuthContext } from "../../context/AuthContext";
 import { useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -11,6 +11,7 @@ function Login() {
   const [error, setError] = useState({ hasError: false, message: "" });
   const { setIsLoggedIn } = useContext(AuthContext);
   const navigate = useNavigate();
+  const location = useLocation();
 
   const loginHandler = async (e) => {
     e.preventDefault();
@@ -20,11 +21,10 @@ function Login() {
         email,
         password,
       });
-      console.log(response);
+
       if (response.status === 200) {
-        console.log("here");
         setIsLoggedIn(true);
-        navigate("/");
+        navigate(location?.state?.location?.pathname);
       }
     } catch (e) {
       setError(() => ({ hasError: true, message: e.response.data.errors[0] }));

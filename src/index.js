@@ -12,6 +12,7 @@ import Cart from "./pages/Cart/Cart";
 import Wishlist from "./pages/Wishlist/Wishlist.jsx";
 import Login from "./pages/Login/Login";
 import SignUp from "./pages/SignUp/SignUp";
+import Auth from "./auth/Auth";
 
 // Call make Server
 makeServer();
@@ -30,10 +31,21 @@ const router = createBrowserRouter([
         path: "/products/product-details/:id",
         element: <ProductDetails />,
       },
-      { path: "/cart", element: <Cart /> },
+      {
+        path: "/cart",
+        element: (
+          <Auth>
+            <Cart />
+          </Auth>
+        ),
+      },
       {
         path: "/wishlist",
-        element: <Wishlist />,
+        element: (
+          <Auth>
+            <Wishlist />
+          </Auth>
+        ),
       },
       { path: "/wishlist/product-details/:id", element: <ProductDetails /> },
       { path: "/login", element: <Login /> },

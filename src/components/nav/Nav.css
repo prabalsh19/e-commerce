@@ -4,9 +4,6 @@ ul {
 .nav__logo {
   cursor: pointer;
 }
-.nav__logo:focus {
-  outline: 1px solid white;
-}
 .nav-container {
   background-color: black;
   width: 100%;

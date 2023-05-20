@@ -8,7 +8,8 @@ import { CartContext } from "../../../../context/CartContext";
 import { WishlistContext } from "../../../../context/WishlistContext";
 
 function ProductCard({ product }) {
-  const { id, image, productName, rating, price, oldPrice, discount } = product;
+  const { _id, image, productName, rating, price, oldPrice, discount } =
+    product;
   const { addItemToCart } = useContext(CartContext);
   const { addItemToWishlist } = useContext(WishlistContext);
 
@@ -18,9 +19,15 @@ function ProductCard({ product }) {
         onClick={() => addItemToWishlist(product)}
         className="add-to-wishlist-btn"
       >
-        <FavoriteIcon sx={{ color: "grey", "&:hover": { color: "red" } }} />
+        <FavoriteIcon
+          sx={{
+            color: "grey",
+
+            "&:hover": { color: "red" },
+          }}
+        />
       </button>
-      <NavLink to={`product-details/${id}`}>
+      <NavLink to={`product-details/${_id}`}>
         <img className="product-card__img" src={image} alt="" />
         <div className="heading-rating-container">
           <h4 className="product-name">{productName}</h4>

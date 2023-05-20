@@ -17,7 +17,6 @@ ul {
 }
 .nav {
   display: flex;
-
   justify-content: space-between;
   align-items: center;
 }
@@ -58,9 +57,8 @@ ul {
 
 .nav-links a {
   display: inline-block;
-  margin-right: 1rem;
-  min-width: 22%;
-  text-align: end;
+  margin-left: 1rem;
+
   color: white;
   text-decoration: none;
 }

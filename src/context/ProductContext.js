@@ -10,7 +10,6 @@ export const ProductContextProvider = ({ children }) => {
     (async () => {
       const response = await axios.get("/api/products");
       setProducts(response?.data?.products);
-      console.log(response?.data?.products);
     })();
   }, [setProducts]);
   const value = {

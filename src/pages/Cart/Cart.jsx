@@ -7,7 +7,7 @@ import CartItemCard from "./CartItemCard/CartItemCard";
 
 function Cart() {
   const { cartItems } = useContext(CartContext);
-  console.log(cartItems);
+
   return (
     <div className="cart-container">
       <div className="cart-items-container">

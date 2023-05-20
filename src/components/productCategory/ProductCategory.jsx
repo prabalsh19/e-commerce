@@ -8,8 +8,12 @@ function ProductCategory() {
   const [productCategoryList, setProductCategoryList] = useState([]);
   useEffect(() => {
     (async () => {
-      const response = await axios.get("/api/categories");
-      setProductCategoryList(response.data.categories);
+      try {
+        const response = await axios.get("/api/categories");
+        setProductCategoryList(response.data.categories);
+      } catch (e) {
+        console.log(e);
+      }
     })();
   }, []);
 

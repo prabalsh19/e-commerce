@@ -4,8 +4,11 @@ import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import "./Nav.css";
 import { useState } from "react";
+import { AuthContext } from "../../context/AuthContext";
+import { useContext } from "react";
 export default function Nav() {
   const [showMobileNav, setShowMobileNav] = useState(false);
+  const { isLoggedIn } = useContext(AuthContext);
   return (
     <div className="nav-container">
       <nav className="nav">
@@ -24,8 +27,14 @@ export default function Nav() {
             <NavLink to="/products">Products</NavLink>
             <NavLink to="/wishlist">Wishlist</NavLink>
             <NavLink to="/cart">My Cart</NavLink>
-            <NavLink to="/account">Account</NavLink>
+            {isLoggedIn ? (
+              <NavLink to="/account">Account</NavLink>
+            ) : (
+              <NavLink to="/login">Login</NavLink>
+            )}
           </ul>
+
+          {/* Nav for screen width <=1024px */}
           <div
             onClick={() => setShowMobileNav(!showMobileNav)}
             className="mobile-menu-icon"
@@ -55,9 +64,18 @@ export default function Nav() {
                 <NavLink onClick={() => setShowMobileNav(false)} to="/cart">
                   My Cart
                 </NavLink>
-                <NavLink onClick={() => setShowMobileNav(false)} to="/account">
-                  Account
-                </NavLink>
+                {isLoggedIn ? (
+                  <NavLink
+                    onClick={() => setShowMobileNav(false)}
+                    to="/account"
+                  >
+                    Account
+                  </NavLink>
+                ) : (
+                  <NavLink onClick={() => setShowMobileNav(false)} to="/login">
+                    Login
+                  </NavLink>
+                )}
               </ul>
             </div>
           )}

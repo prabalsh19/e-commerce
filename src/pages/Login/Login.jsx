@@ -24,7 +24,6 @@ function Login() {
 
       if (response.status === 200) {
         setIsLoggedIn(true);
-        console.log(location);
         location.state
           ? navigate(location?.state?.location?.pathname)
           : navigate("/");

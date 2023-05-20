@@ -11,23 +11,39 @@ function ProductCard({ product }) {
   const { _id, image, productName, rating, price, oldPrice, discount } =
     product;
   const { cartItems, addItemToCart } = useContext(CartContext);
-  const { addItemToWishlist } = useContext(WishlistContext);
-  const productExistInCart = cartItems.some((item) => item._id === _id);
+  const { wishlistItems, addItemToWishlist, removeFromWishlist } =
+    useContext(WishlistContext);
 
+  const productExistInCart = cartItems.some((item) => item._id === _id);
+  const productExistInWishlist = wishlistItems.some((item) => item._id === _id);
   return (
     <div className="product-card">
-      <button
-        onClick={() => addItemToWishlist(product)}
-        className="add-to-wishlist-btn"
-      >
-        <FavoriteIcon
-          sx={{
-            color: "grey",
+      {productExistInWishlist ? (
+        <button
+          onClick={() => addItemToWishlist(product)}
+          className="add-to-wishlist-btn"
+        >
+          <FavoriteIcon
+            sx={{
+              color: "red",
+            }}
+          />
+        </button>
+      ) : (
+        <button
+          onClick={() => removeFromWishlist(_id)}
+          className="add-to-wishlist-btn"
+        >
+          <FavoriteIcon
+            sx={{
+              color: "grey",
 
-            "&:hover": { color: "red" },
-          }}
-        />
-      </button>
+              "&:hover": { color: "red" },
+            }}
+          />
+        </button>
+      )}
+
       <NavLink to={`product-details/${_id}`}>
         <img className="product-card__img" src={image} alt="" />
         <div className="heading-rating-container">

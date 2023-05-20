@@ -40,6 +40,7 @@ function Login() {
           value={email}
           type="email"
           name="email"
+          required
         />
         <label htmlFor="password">Password</label>
         <input
@@ -48,6 +49,7 @@ function Login() {
           type="password"
           name=""
           id=""
+          required
         />
         {error.hasError && <span className="error-msg">{error.message}</span>}
         <button type="submit" className="auth-btn">

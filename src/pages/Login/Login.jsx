@@ -24,7 +24,10 @@ function Login() {
 
       if (response.status === 200) {
         setIsLoggedIn(true);
-        navigate(location?.state?.location?.pathname);
+        console.log(location);
+        location.state
+          ? navigate(location?.state?.location?.pathname)
+          : navigate("/");
       }
     } catch (e) {
       setError(() => ({ hasError: true, message: e.response.data.errors[0] }));

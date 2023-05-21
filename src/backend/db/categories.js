@@ -16,7 +16,7 @@ export const categories = [
   {
     _id: uuid(),
     alt: "product",
-    category: "Noise Cancelling",
+    category: "Noise_Cancelling",
     image:
       "https://res.cloudinary.com/dgzehngjw/image/upload/v1651052852/evolt-ecommerce/2_rf00wy.jpg",
   },

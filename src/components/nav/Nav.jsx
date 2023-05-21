@@ -15,7 +15,7 @@ export default function Nav() {
   return (
     <div className="nav-container">
       <nav className="nav">
-        <NavLink to="/" onClick={() => dispatch({ type: "RESET_SEARCH" })}>
+        <NavLink to="/" onClick={() => dispatch({ type: "RESET" })}>
           <h1 className="nav__logo">COMMERCE</h1>
         </NavLink>
         <Search />

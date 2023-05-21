@@ -15,8 +15,11 @@ const reducer = (state, action) => {
         condition: { ...state.condition, search: action.payload },
       };
     }
-    case "RESET_SEARCH": {
-      return { ...state, condition: { ...state.condition, search: "" } };
+    case "RESET": {
+      return {
+        ...state,
+        condition: { search: "", price: null, categories: [], rating: null },
+      };
     }
     case "PRICE": {
       return {
@@ -81,7 +84,7 @@ export const ProductContextProvider = ({ children }) => {
       rating: null,
     },
   });
-
+  console.log(state.condition.categories);
   const initialProducts = async () => {
     const response = await axios.get("/api/products");
     dispatch({ type: "INITIAL_STATE", payload: response.data.products });
@@ -115,7 +118,7 @@ export const ProductContextProvider = ({ children }) => {
   };
   const ratingFilterHandler = (arr, condition) => {
     if (condition.rating === null) return arr;
-    console.log(condition.rating);
+
     return arr.filter((item) => item.rating >= condition.rating);
   };
   const filtersArray = [
@@ -135,7 +138,7 @@ export const ProductContextProvider = ({ children }) => {
     state,
     dispatch,
   };
-  console.log(filteredArray);
+
   return (
     <ProductContext.Provider value={value}>{children}</ProductContext.Provider>
   );

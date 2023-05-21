@@ -2,9 +2,13 @@ import { NavLink } from "react-router-dom";
 import axios from "axios";
 
 import "./ProductCategory.css";
-import { useEffect } from "react";
 import { useState } from "react";
+import { useEffect } from "react";
+import { ProductContext } from "../../context/ProductContext";
+import { useContext } from "react";
+
 function ProductCategory() {
+  const { dispatch } = useContext(ProductContext);
   const [productCategoryList, setProductCategoryList] = useState([]);
   useEffect(() => {
     (async () => {
@@ -21,9 +25,17 @@ function ProductCategory() {
     <ul className="product-category-container">
       {productCategoryList.map(({ id, image, category }) => (
         <NavLink key={id} to="/products">
-          <li className="product-category-item">
+          <li
+            onClick={() =>
+              dispatch({
+                type: "CATEGORIES",
+                payload: { isChecked: true, value: category.toLowerCase() },
+              })
+            }
+            className="product-category-item"
+          >
             <img src={image} alt="" />
-            <span>{category}</span>
+            <span>{category.split("_").join(" ")}</span>
           </li>
         </NavLink>
       ))}

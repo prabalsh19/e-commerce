@@ -3,7 +3,7 @@ import "./Filters.css";
 import { ProductContext } from "../../../context/ProductContext";
 function Filters() {
   const [rangeValue, setRangeValue] = useState(1);
-  const { dispatch } = useContext(ProductContext);
+  const { state, dispatch } = useContext(ProductContext);
   const submitHandler = (e) => {
     e.preventDefault();
     e.target.reset();
@@ -49,6 +49,7 @@ function Filters() {
                   payload: { isChecked: e.target.checked, value: "wired" },
                 })
               }
+              checked={state.condition.categories.includes("wired")}
               type="checkbox"
               name="categories"
               id=""
@@ -66,6 +67,7 @@ function Filters() {
                   },
                 })
               }
+              checked={state.condition.categories.includes("noise_cancelling")}
               type="checkbox"
               name="categories"
               id=""
@@ -80,6 +82,7 @@ function Filters() {
                   payload: { isChecked: e.target.checked, value: "wireless" },
                 })
               }
+              checked={state.condition.categories.includes("wireless")}
               type="checkbox"
               name="categories"
               id=""
@@ -94,6 +97,7 @@ function Filters() {
                   payload: { isChecked: e.target.checked, value: "speaker" },
                 })
               }
+              checked={state.condition.categories.includes("speaker")}
               type="checkbox"
               name="categories"
               id=""

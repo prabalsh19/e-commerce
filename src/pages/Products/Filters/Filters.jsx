@@ -1,53 +1,130 @@
+import { useContext, useState } from "react";
 import "./Filters.css";
+import { ProductContext } from "../../../context/ProductContext";
 function Filters() {
+  const [rangeValue, setRangeValue] = useState(1);
+  const { dispatch } = useContext(ProductContext);
+  const submitHandler = (e) => {
+    e.preventDefault();
+    e.target.reset();
+    setRangeValue(1);
+  };
   return (
     <div className="filters-container">
-      <div className="heading-container">
-        <h3>Filters</h3>
-        <button>Clear</button>
-      </div>
-
-      <h4>Price</h4>
-      <ul>
-        <li>
-          <input type="radio" name="price" id="HTL" />
-          <label htmlFor="price">High To Low</label>
-        </li>
-        <li>
-          <input type="radio" name="price" id="LTH" />
-          <label htmlFor="price">Low To High</label>
-        </li>
-      </ul>
-      <h4>Categories</h4>
-      <ul>
-        <li>
-          <input type="checkbox" name="categories" id="" />
-          <label htmlFor="categories">Wired</label>
-        </li>
-        <li>
-          <input type="checkbox" name="categories" id="" />
-          <label htmlFor="categories">Noise Cancelling</label>
-        </li>
-        <li>
-          <input type="checkbox" name="categories" id="" />
-          <label htmlFor="categories">Wireless</label>
-        </li>{" "}
-        <li>
-          <input type="checkbox" name="categories" id="" />
-          <label htmlFor="categories">Speaker</label>
-        </li>
-        <div className="rating-filter-container">
-          <h4>Ratings</h4>
-          <div className="rating-labels">
-            <span>1</span>
-            <span>2</span>
-            <span>3</span>
-            <span>4</span>
-            <span>5</span>
-          </div>
-          <input min="1" max="5" step="1" type="range" name="" id="" />
+      <form action="" onSubmit={submitHandler}>
+        <div className="heading-container">
+          <h3>Filters</h3>
+          <button type="submit" onClick={() => dispatch({ type: "CLEAR" })}>
+            Clear
+          </button>
         </div>
-      </ul>
+        <h4>Price</h4>
+        <ul>
+          <li>
+            <input
+              onClick={() => dispatch({ type: "PRICE", payload: "HTL" })}
+              type="radio"
+              name="price"
+              id="HTL"
+            />
+            <label htmlFor="price">High To Low</label>
+          </li>
+          <li>
+            <input
+              onClick={() => dispatch({ type: "PRICE", payload: "LTH" })}
+              type="radio"
+              name="price"
+              id="LTH"
+            />
+            <label htmlFor="price">Low To High</label>
+          </li>
+        </ul>
+        <h4>Categories</h4>
+        <ul>
+          <li>
+            <input
+              onChange={(e) =>
+                dispatch({
+                  type: "CATEGORIES",
+                  payload: { isChecked: e.target.checked, value: "wired" },
+                })
+              }
+              type="checkbox"
+              name="categories"
+              id=""
+            />
+            <label htmlFor="categories">Wired</label>
+          </li>
+          <li>
+            <input
+              onChange={(e) =>
+                dispatch({
+                  type: "CATEGORIES",
+                  payload: {
+                    isChecked: e.target.checked,
+                    value: "noise_cancelling",
+                  },
+                })
+              }
+              type="checkbox"
+              name="categories"
+              id=""
+            />
+            <label htmlFor="categories">Noise Cancelling</label>
+          </li>
+          <li>
+            <input
+              onChange={(e) =>
+                dispatch({
+                  type: "CATEGORIES",
+                  payload: { isChecked: e.target.checked, value: "wireless" },
+                })
+              }
+              type="checkbox"
+              name="categories"
+              id=""
+            />
+            <label htmlFor="categories">Wireless</label>
+          </li>
+          <li>
+            <input
+              onChange={(e) =>
+                dispatch({
+                  type: "CATEGORIES",
+                  payload: { isChecked: e.target.checked, value: "speaker" },
+                })
+              }
+              type="checkbox"
+              name="categories"
+              id=""
+            />
+            <label htmlFor="categories">Speaker</label>
+          </li>
+          <div className="rating-filter-container">
+            <h4>Ratings</h4>
+            <div className="rating-labels">
+              <span>1</span>
+              <span>2</span>
+              <span>3</span>
+              <span>4</span>
+              <span>5</span>
+            </div>
+            <input
+              min="-5"
+              max="-1"
+              step="1"
+              type="range"
+              onChange={(e) => {
+                setRangeValue(e.target.value);
+                dispatch({ type: "RATING", payload: e.target.value });
+              }}
+              value={rangeValue}
+              name=""
+              id=""
+            />
+          </div>
+        </ul>
+      </form>
     </div>
   );
 }

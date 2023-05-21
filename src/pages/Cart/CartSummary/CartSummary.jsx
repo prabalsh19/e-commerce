@@ -24,6 +24,7 @@ function CartSummary() {
         <span>Total Amount</span>
         <span>₹{totalPrice + totalDiscount}</span>
       </div>
+      <button className="checkout-btn">CHECK OUT</button>
     </div>
   );
 }

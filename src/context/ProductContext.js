@@ -9,12 +9,22 @@ const reducer = (state, action) => {
     case "INITIAL_STATE": {
       return { ...state, products: action.payload };
     }
+    case "SEARCH": {
+      return {
+        ...state,
+        condition: { ...state.condition, search: action.payload },
+      };
+    }
+    case "RESET_SEARCH": {
+      return { ...state, condition: { ...state.condition, search: "" } };
+    }
     case "PRICE": {
       return {
         ...state,
         condition: { ...state.condition, price: action.payload },
       };
     }
+
     case "CATEGORIES": {
       if (action.payload.isChecked) {
         return {
@@ -49,12 +59,14 @@ const reducer = (state, action) => {
       return {
         ...state,
         condition: {
+          search: "",
           price: null,
           categories: [],
           rating: null,
         },
       };
     }
+
     default:
   }
 };
@@ -63,6 +75,7 @@ export const ProductContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, {
     products: [],
     condition: {
+      search: "",
       price: null,
       categories: [],
       rating: null,
@@ -77,6 +90,16 @@ export const ProductContextProvider = ({ children }) => {
   useEffect(() => {
     initialProducts();
   }, []);
+
+  const searchHandler = (arr, condition) => {
+    if (condition.search === "") return arr;
+    return arr.filter((item) =>
+      item.productName
+        .toLowerCase()
+        .includes(state.condition.search.toLowerCase())
+    );
+  };
+
   const priceFilterHandler = (arr, conditions) => {
     if (conditions.price === null) return arr;
 
@@ -96,6 +119,7 @@ export const ProductContextProvider = ({ children }) => {
     return arr.filter((item) => item.rating >= condition.rating);
   };
   const filtersArray = [
+    searchHandler,
     categoriesFilterHandler,
     ratingFilterHandler,
     priceFilterHandler,

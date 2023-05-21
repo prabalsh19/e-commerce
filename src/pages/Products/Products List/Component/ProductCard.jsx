@@ -35,8 +35,6 @@ function ProductCard({ product }) {
             onClick={() => addItemToWishlist(product)}
             sx={{
               color: "grey",
-
-              "&:hover": { color: "red" },
             }}
           />
         </button>

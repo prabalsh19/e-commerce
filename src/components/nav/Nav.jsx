@@ -1,26 +1,24 @@
 import { NavLink } from "react-router-dom";
-import SearchIcon from "@mui/icons-material/Search";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import "./Nav.css";
 import { useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { useContext } from "react";
+import Search from "../search/Search";
+import { ProductContext } from "../../context/ProductContext";
+
 export default function Nav() {
   const [showMobileNav, setShowMobileNav] = useState(false);
   const { isLoggedIn } = useContext(AuthContext);
+  const { dispatch } = useContext(ProductContext);
   return (
     <div className="nav-container">
       <nav className="nav">
-        <NavLink to="/">
+        <NavLink to="/" onClick={() => dispatch({ type: "RESET_SEARCH" })}>
           <h1 className="nav__logo">COMMERCE</h1>
         </NavLink>
-        <div className="nav__search-container">
-          <input type="text" />
-          <button>
-            <SearchIcon />
-          </button>
-        </div>
+        <Search />
 
         <div>
           <ul className="nav-links">

@@ -1,7 +1,7 @@
 import "./ProductDetails.css";
 import { useContext } from "react";
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import StarIcon from "@mui/icons-material/Star";
 import { CartContext } from "../../context/CartContext";
@@ -9,22 +9,27 @@ import { WishlistContext } from "../../context/WishlistContext";
 import axios from "axios";
 
 function ProductDetails() {
-  const { addItemToCart } = useContext(CartContext);
-  const { addItemToWishlist } = useContext(WishlistContext);
+  const { cartItems, addItemToCart } = useContext(CartContext);
+  const { wishlistItems, addItemToWishlist } = useContext(WishlistContext);
   const [selectedProduct, setSelectedProduct] = useState(null);
   const { id } = useParams();
-  console.log(id);
+
+  const productExistInCart = cartItems.some((item) => item._id === id);
+  const productExistInWishlist = wishlistItems.some((item) => item._id === id);
+
   useEffect(() => {
     (async () => {
       try {
+        console.log("h");
         const response = await axios.get(`/api/products/${id}`);
-        setSelectedProduct(response.data.product);
+        setSelectedProduct(() => response.data.product);
+        console.log(response.data);
       } catch (e) {
         console.log(e);
       }
     })();
   }, [id]);
-
+  console.log(id);
   return (
     selectedProduct && (
       <div key={selectedProduct?._id} className="product-details-container">
@@ -58,18 +63,30 @@ function ProductDetails() {
             </p>
           </div>
           <div className="action-buttons">
-            <button
-              className="product-details__add-to-cart-btn"
-              onClick={() => addItemToCart(selectedProduct)}
-            >
-              ADD TO CART
-            </button>
-            <button
-              className="product-details__add-to-wishlist-btn"
-              onClick={() => addItemToWishlist(selectedProduct)}
-            >
-              ADD TO WISHLIST
-            </button>
+            {productExistInCart ? (
+              <button className="product-details__add-to-cart-btn">
+                <Link to="/cart">GO TO CART</Link>
+              </button>
+            ) : (
+              <button
+                className="product-details__add-to-cart-btn"
+                onClick={() => addItemToCart(selectedProduct)}
+              >
+                ADD TO CART
+              </button>
+            )}
+            {productExistInWishlist ? (
+              <button className="product-details__add-to-wishlist-btn">
+                <Link to="/wishlist">GO TO WISHLIST</Link>
+              </button>
+            ) : (
+              <button
+                className="product-details__add-to-wishlist-btn"
+                onClick={() => addItemToWishlist(selectedProduct)}
+              >
+                ADD TO WISHLIST
+              </button>
+            )}
           </div>
 
           <hr />

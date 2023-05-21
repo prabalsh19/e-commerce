@@ -6,6 +6,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { ProductContext } from "../../context/ProductContext";
 import { useContext } from "react";
+import Loader from "../loader/Loader";
 
 function ProductCategory() {
   const { dispatch } = useContext(ProductContext);
@@ -20,7 +21,7 @@ function ProductCategory() {
       }
     })();
   }, []);
-
+  if (productCategoryList.length === 0) return <Loader />;
   return (
     <ul className="product-category-container">
       {productCategoryList.map(({ id, image, category }) => (

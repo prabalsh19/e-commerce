@@ -1,0 +1,17 @@
+.loader-container {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  justify-content: center;
+  justify-items: center;
+}
+.loader {
+  max-width: 30rem;
+}
+.loader-bg {
+  position: absolute;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: white;
+}

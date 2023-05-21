@@ -12,7 +12,7 @@ function Cart() {
     <div className="cart-container">
       <div className="cart-items-container">
         {cartItems.map((item) => (
-          <CartItemCard {...item} />
+          <CartItemCard key={item._id} {...item} />
         ))}
       </div>
       <CartSummary />

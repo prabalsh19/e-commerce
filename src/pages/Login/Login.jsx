@@ -24,6 +24,7 @@ function Login() {
 
       if (response.status === 200) {
         setIsLoggedIn(true);
+        localStorage.setItem("encodedToken", response.data.encodedToken);
         location.state
           ? navigate(location?.state?.location?.pathname)
           : navigate("/");

@@ -75,4 +75,5 @@
   background-color: transparent;
   cursor: pointer;
   padding: 5px;
+  z-index: 99;
 }

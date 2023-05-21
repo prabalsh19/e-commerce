@@ -19,22 +19,20 @@ function ProductCard({ product }) {
   return (
     <div className="product-card">
       {productExistInWishlist ? (
-        <button
-          onClick={() => addItemToWishlist(product)}
-          className="add-to-wishlist-btn"
-        >
-          <FavoriteIcon
-            sx={{
-              color: "red",
-            }}
-          />
-        </button>
+        <>
+          <button className="add-to-wishlist-btn">
+            <FavoriteIcon
+              onClick={() => removeFromWishlist(_id)}
+              sx={{
+                color: "red",
+              }}
+            />
+          </button>
+        </>
       ) : (
-        <button
-          onClick={() => removeFromWishlist(_id)}
-          className="add-to-wishlist-btn"
-        >
+        <button className="add-to-wishlist-btn">
           <FavoriteIcon
+            onClick={() => addItemToWishlist(product)}
             sx={{
               color: "grey",
 

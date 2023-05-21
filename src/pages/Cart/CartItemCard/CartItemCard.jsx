@@ -1,7 +1,20 @@
 import "./CartItemCard.css";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
-function CartItemCard({ image, productName, oldPrice, price, discount }) {
+import { useContext } from "react";
+import { CartContext } from "../../../context/CartContext";
+function CartItemCard({
+  _id,
+  image,
+  qty,
+  productName,
+  oldPrice,
+  price,
+  discount,
+}) {
+  const { removeItemFromCart, increaseQuantity, decreaseQuantity } =
+    useContext(CartContext);
+
   return (
     <div className="cart-card-container">
       <img className="card-card__image" src={image} alt="" />
@@ -14,11 +27,23 @@ function CartItemCard({ image, productName, oldPrice, price, discount }) {
         <span className="cart-item-discount">{discount}% OFF</span>
         <div className="cart-item-quantity">
           <span>Quantity: </span>
-          <RemoveCircleIcon sx={{ "&:hover": { cursor: "pointer" } }} />
+          <RemoveCircleIcon
+            onClick={() => decreaseQuantity(_id)}
+            sx={{ "&:hover": { cursor: "pointer" } }}
+          />
 
-          <span>1</span>
-          <AddCircleIcon sx={{ "&:hover": { cursor: "pointer" } }} />
+          <span>{qty}</span>
+          <AddCircleIcon
+            onClick={() => increaseQuantity(_id)}
+            sx={{ "&:hover": { cursor: "pointer" } }}
+          />
         </div>
+        <button
+          onClick={() => removeItemFromCart(_id)}
+          className="remove-cart-item-btn"
+        >
+          REMOVE FROM CART
+        </button>
       </div>
     </div>
   );

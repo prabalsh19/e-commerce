@@ -33,6 +33,11 @@ function Login() {
       setError(() => ({ hasError: true, message: e.response.data.errors[0] }));
     }
   };
+  const guestLoginHandler = async (e) => {
+    setEmail("adarshbalika@gmail.com");
+    setPassword("adarshbalika");
+  };
+
   return (
     <form autoComplete="off" onSubmit={loginHandler} action="">
       <div className="login-container">
@@ -55,6 +60,9 @@ function Login() {
           required
         />
         {error.hasError && <span className="error-msg">{error.message}</span>}
+        <button onClick={guestLoginHandler} type="submit" className="auth-btn">
+          Guest Login
+        </button>
         <button type="submit" className="auth-btn">
           Login
         </button>

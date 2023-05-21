@@ -3,17 +3,16 @@ import AddCircleIcon from "@mui/icons-material/AddCircle";
 import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
 import { useContext } from "react";
 import { CartContext } from "../../../context/CartContext";
-function CartItemCard({
-  _id,
-  image,
-  qty,
-  productName,
-  oldPrice,
-  price,
-  discount,
-}) {
+import { WishlistContext } from "../../../context/WishlistContext";
+import { Link } from "react-router-dom";
+
+function CartItemCard(product) {
+  const { _id, image, qty, productName, oldPrice, price, discount } = product;
   const { removeItemFromCart, increaseQuantity, decreaseQuantity } =
     useContext(CartContext);
+  const { wishlistItems, addItemToWishlist } = useContext(WishlistContext);
+
+  const productExistInWishlist = wishlistItems.some((item) => item._id === _id);
 
   return (
     <div className="cart-card-container">
@@ -38,12 +37,27 @@ function CartItemCard({
             sx={{ "&:hover": { cursor: "pointer" } }}
           />
         </div>
-        <button
-          onClick={() => removeItemFromCart(_id)}
-          className="remove-cart-item-btn"
-        >
-          REMOVE FROM CART
-        </button>
+        <div className="cart-actions">
+          <button
+            onClick={() => removeItemFromCart(_id)}
+            className="remove-cart-item-btn"
+          >
+            REMOVE FROM CART
+          </button>
+          <br />
+          {productExistInWishlist ? (
+            <button className="cart-add-to-wishlist-btn">
+              <Link to="/wishlist">GO TO WISHLIST</Link>
+            </button>
+          ) : (
+            <button
+              className="cart-add-to-wishlist-btn"
+              onClick={() => addItemToWishlist(product)}
+            >
+              ADD TO WISHLIST
+            </button>
+          )}
+        </div>
       </div>
     </div>
   );

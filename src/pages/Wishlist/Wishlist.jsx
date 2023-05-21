@@ -1,7 +1,7 @@
 import "./Wishlist.css";
 import { WishlistContext } from "../../context/WishlistContext";
-import ProductCard from "../Products/Products List/Component/ProductCard";
 import { useContext } from "react";
+import WishlistCard from "./component/WishlistCard";
 const Wishlist = () => {
   const { wishlistItems } = useContext(WishlistContext);
   return (
@@ -9,7 +9,7 @@ const Wishlist = () => {
       <ul className="wishlist-container">
         {wishlistItems.map((item) => (
           <li key={item._id}>
-            <ProductCard product={item} />
+            <WishlistCard product={item} />
           </li>
         ))}
       </ul>

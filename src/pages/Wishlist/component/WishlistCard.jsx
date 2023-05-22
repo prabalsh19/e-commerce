@@ -5,6 +5,7 @@ import { NavLink } from "react-router-dom";
 import { useContext } from "react";
 import { WishlistContext } from "../../../context/WishlistContext";
 import { CartContext } from "../../../context/CartContext";
+import { toast } from "react-toastify";
 
 function WishlistCard({ product }) {
   const { _id, image, productName, rating, price, oldPrice, discount } =
@@ -60,7 +61,19 @@ function WishlistCard({ product }) {
       </NavLink>
       {productExistInCart ? (
         <button
-          onClick={() => increaseQuantity(_id)}
+          onClick={() => {
+            toast.success("Quantity Increased By +1", {
+              position: "bottom-right",
+              autoClose: 1000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: false,
+              draggable: true,
+              progress: undefined,
+              theme: "dark",
+            });
+            increaseQuantity(_id);
+          }}
           className="add-to-cart-btn"
         >
           +1 QUANTITY
@@ -68,9 +81,21 @@ function WishlistCard({ product }) {
       ) : (
         <button
           className="add-to-cart-btn"
-          onClick={() => addItemToCart(product)}
+          onClick={() => {
+            toast.success("Moved To Cart", {
+              position: "bottom-right",
+              autoClose: 1000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: false,
+              draggable: true,
+              progress: undefined,
+              theme: "dark",
+            });
+            addItemToCart(product);
+          }}
         >
-          ADD TO CART
+          MOVE TO CART
         </button>
       )}
     </div>

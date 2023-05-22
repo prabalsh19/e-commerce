@@ -6,6 +6,7 @@ import { NavLink } from "react-router-dom";
 import { useContext } from "react";
 import { CartContext } from "../../../../context/CartContext";
 import { WishlistContext } from "../../../../context/WishlistContext";
+import { toast } from "react-toastify";
 
 function ProductCard({ product }) {
   const { _id, image, productName, rating, price, oldPrice, discount } =
@@ -16,13 +17,26 @@ function ProductCard({ product }) {
 
   const productExistInCart = cartItems.some((item) => item._id === _id);
   const productExistInWishlist = wishlistItems.some((item) => item._id === _id);
+
   return (
     <div className="product-card">
       {productExistInWishlist ? (
         <>
           <button className="add-to-wishlist-btn">
             <FavoriteIcon
-              onClick={() => removeFromWishlist(_id)}
+              onClick={() => {
+                toast.info("Removed From Wishlist", {
+                  position: "bottom-right",
+                  autoClose: 1000,
+                  hideProgressBar: false,
+                  closeOnClick: true,
+                  pauseOnHover: false,
+                  draggable: true,
+                  progress: undefined,
+                  theme: "dark",
+                });
+                removeFromWishlist(_id);
+              }}
               sx={{
                 color: "red",
               }}
@@ -32,7 +46,19 @@ function ProductCard({ product }) {
       ) : (
         <button className="add-to-wishlist-btn">
           <FavoriteIcon
-            onClick={() => addItemToWishlist(product)}
+            onClick={() => {
+              toast.success("Added To Wishlist", {
+                position: "bottom-right",
+                autoClose: 1000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+              });
+              addItemToWishlist(product);
+            }}
             sx={{
               color: "grey",
             }}
@@ -64,7 +90,19 @@ function ProductCard({ product }) {
       ) : (
         <button
           className="add-to-cart-btn"
-          onClick={() => addItemToCart(product)}
+          onClick={() => {
+            toast.success("Added To The Cart", {
+              position: "bottom-right",
+              autoClose: 1000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: false,
+              draggable: true,
+              progress: undefined,
+              theme: "dark",
+            });
+            addItemToCart(product);
+          }}
         >
           ADD TO CART
         </button>

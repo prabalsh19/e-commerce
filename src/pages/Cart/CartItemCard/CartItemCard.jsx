@@ -5,6 +5,7 @@ import { useContext } from "react";
 import { CartContext } from "../../../context/CartContext";
 import { WishlistContext } from "../../../context/WishlistContext";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 
 function CartItemCard(product) {
   const { _id, image, qty, productName, oldPrice, price, discount } = product;
@@ -52,9 +53,21 @@ function CartItemCard(product) {
           ) : (
             <button
               className="cart-add-to-wishlist-btn"
-              onClick={() => addItemToWishlist(product)}
+              onClick={() => {
+                toast.success("Moved To The Wishlist", {
+                  position: "bottom-right",
+                  autoClose: 1000,
+                  hideProgressBar: false,
+                  closeOnClick: true,
+                  pauseOnHover: false,
+                  draggable: true,
+                  progress: undefined,
+                  theme: "dark",
+                });
+                addItemToWishlist(product);
+              }}
             >
-              ADD TO WISHLIST
+              MOVE TO WISHLIST
             </button>
           )}
         </div>

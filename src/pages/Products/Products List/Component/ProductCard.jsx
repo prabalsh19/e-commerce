@@ -6,7 +6,6 @@ import { NavLink } from "react-router-dom";
 import { useContext } from "react";
 import { CartContext } from "../../../../context/CartContext";
 import { WishlistContext } from "../../../../context/WishlistContext";
-import { toast } from "react-toastify";
 
 function ProductCard({ product }) {
   const { _id, image, productName, rating, price, oldPrice, discount } =
@@ -25,16 +24,6 @@ function ProductCard({ product }) {
           <button className="add-to-wishlist-btn">
             <FavoriteIcon
               onClick={() => {
-                toast.info("Removed From Wishlist", {
-                  position: "bottom-right",
-                  autoClose: 1000,
-                  hideProgressBar: false,
-                  closeOnClick: true,
-                  pauseOnHover: false,
-                  draggable: true,
-                  progress: undefined,
-                  theme: "dark",
-                });
                 removeFromWishlist(_id);
               }}
               sx={{
@@ -47,16 +36,6 @@ function ProductCard({ product }) {
         <button className="add-to-wishlist-btn">
           <FavoriteIcon
             onClick={() => {
-              toast.success("Added To Wishlist", {
-                position: "bottom-right",
-                autoClose: 1000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: false,
-                draggable: true,
-                progress: undefined,
-                theme: "dark",
-              });
               addItemToWishlist(product);
             }}
             sx={{
@@ -91,16 +70,6 @@ function ProductCard({ product }) {
         <button
           className="add-to-cart-btn"
           onClick={() => {
-            toast.success("Added To The Cart", {
-              position: "bottom-right",
-              autoClose: 1000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: false,
-              draggable: true,
-              progress: undefined,
-              theme: "dark",
-            });
             addItemToCart(product);
           }}
         >

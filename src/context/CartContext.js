@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { createContext } from "react";
+import { toast } from "react-toastify";
 
 export const CartContext = createContext();
 
@@ -8,7 +9,6 @@ export const CartContextProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
   const [totalDiscount, setTotalDiscount] = useState(0);
-  const encodedToken = localStorage.getItem("encodedToken");
 
   const updateTotalPrice = (cart) => {
     setTotalPrice(() =>
@@ -27,26 +27,52 @@ export const CartContextProvider = ({ children }) => {
     );
   };
   const addItemToCart = async (product) => {
+    const encodedToken = localStorage.getItem("encodedToken");
     try {
-      const response = await axios.post(
-        "/api/user/cart",
-        {
-          product,
-        },
-        {
-          headers: {
-            authorization: encodedToken,
+      if (encodedToken !== null) {
+        const response = await axios.post(
+          "/api/user/cart",
+          {
+            product,
           },
-        }
-      );
-      setCartItems(() => response.data.cart);
-      updateTotalPrice(response.data.cart);
-      updateTotalDiscount(response.data.cart);
+          {
+            headers: {
+              authorization: encodedToken,
+            },
+          }
+        );
+        setCartItems(() => response.data.cart);
+        updateTotalPrice(response.data.cart);
+        updateTotalDiscount(response.data.cart);
+        toast.success("Added To The Cart", {
+          position: "bottom-right",
+          autoClose: 1000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
+      } else {
+        toast.info("Please Login First", {
+          position: "bottom-right",
+          autoClose: 1000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
+      }
     } catch (e) {
       console.log(e);
     }
   };
   const removeItemFromCart = async (id) => {
+    const encodedToken = localStorage.getItem("encodedToken");
+
     try {
       const response = await axios.delete(`/api/user/cart/${id}`, {
         headers: {
@@ -62,6 +88,8 @@ export const CartContextProvider = ({ children }) => {
     }
   };
   const increaseQuantity = async (id) => {
+    const encodedToken = localStorage.getItem("encodedToken");
+
     try {
       const response = await axios.post(
         `/api/user/cart/${id}`,
@@ -84,6 +112,8 @@ export const CartContextProvider = ({ children }) => {
     }
   };
   const decreaseQuantity = async (id) => {
+    const encodedToken = localStorage.getItem("encodedToken");
+
     try {
       const response = await axios.post(
         `/api/user/cart/${id}`,

@@ -22,15 +22,13 @@ function Login() {
         password,
       });
 
-      if (response.status === 200) {
-        setIsLoggedIn(true);
-        setUserDetails(response.data.foundUser);
+      setIsLoggedIn(true);
+      setUserDetails(response.data.foundUser);
 
-        localStorage.setItem("encodedToken", response.data.encodedToken);
-        location.state
-          ? navigate(location?.state?.location?.pathname)
-          : navigate("/");
-      }
+      localStorage.setItem("encodedToken", response.data.encodedToken);
+      location.state
+        ? navigate(location?.state?.location?.pathname)
+        : navigate("/");
     } catch (e) {
       setIsLoggedIn(false);
       setError(() => ({ hasError: true, message: e.response.data.errors[0] }));

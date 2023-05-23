@@ -7,7 +7,6 @@ import StarIcon from "@mui/icons-material/Star";
 import { CartContext } from "../../context/CartContext";
 import { WishlistContext } from "../../context/WishlistContext";
 import axios from "axios";
-import { toast } from "react-toastify";
 
 function ProductDetails() {
   const { cartItems, addItemToCart } = useContext(CartContext);
@@ -21,16 +20,14 @@ function ProductDetails() {
   useEffect(() => {
     (async () => {
       try {
-        console.log("h");
         const response = await axios.get(`/api/products/${id}`);
         setSelectedProduct(() => response.data.product);
-        console.log(response.data);
       } catch (e) {
         console.log(e);
       }
     })();
   }, [id]);
-  console.log(id);
+
   return (
     selectedProduct && (
       <div key={selectedProduct?._id} className="product-details-container">
@@ -72,16 +69,6 @@ function ProductDetails() {
               <button
                 className="product-details__add-to-cart-btn"
                 onClick={() => {
-                  toast.success("Added To The Cart", {
-                    position: "bottom-right",
-                    autoClose: 1000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: false,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "dark",
-                  });
                   addItemToCart(selectedProduct);
                 }}
               >
@@ -96,16 +83,6 @@ function ProductDetails() {
               <button
                 className="product-details__add-to-wishlist-btn"
                 onClick={() => {
-                  toast.success("Added To The Wishlist", {
-                    position: "bottom-right",
-                    autoClose: 1000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: false,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "dark",
-                  });
                   addItemToWishlist(selectedProduct);
                 }}
               >

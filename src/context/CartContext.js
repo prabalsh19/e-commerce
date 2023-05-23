@@ -137,6 +137,7 @@ export const CartContextProvider = ({ children }) => {
   };
   const value = {
     cartItems,
+    setCartItems,
     addItemToCart,
     totalPrice,
     totalDiscount,

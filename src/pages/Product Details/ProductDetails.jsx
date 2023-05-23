@@ -6,12 +6,14 @@ import { useEffect } from "react";
 import StarIcon from "@mui/icons-material/Star";
 import { CartContext } from "../../context/CartContext";
 import { WishlistContext } from "../../context/WishlistContext";
+import { AuthContext } from "../../context/AuthContext";
 import axios from "axios";
 
 function ProductDetails() {
   const { cartItems, addItemToCart } = useContext(CartContext);
   const { wishlistItems, addItemToWishlist } = useContext(WishlistContext);
   const [selectedProduct, setSelectedProduct] = useState(null);
+  const { isLoggedIn } = useContext(AuthContext);
   const { id } = useParams();
 
   const productExistInCart = cartItems.some((item) => item._id === id);
@@ -61,7 +63,7 @@ function ProductDetails() {
             </p>
           </div>
           <div className="action-buttons">
-            {productExistInCart ? (
+            {productExistInCart && isLoggedIn ? (
               <button className="product-details__add-to-cart-btn">
                 <Link to="/cart">GO TO CART</Link>
               </button>

@@ -89,6 +89,7 @@ export const WishlistContextProvider = ({ children }) => {
   };
   const value = {
     wishlistItems,
+    setWishlistItems,
     addItemToWishlist,
     removeFromWishlist,
   };

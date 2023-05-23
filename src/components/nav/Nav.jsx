@@ -18,9 +18,10 @@ export default function Nav() {
   const { dispatch } = useContext(ProductContext);
 
   const logoutHandler = () => {
+    console.log("here");
     setIsLoggedIn(false);
-    setCartItems(() => []);
-    setWishlistItems(() => []);
+    setCartItems([]);
+    setWishlistItems([]);
     localStorage.removeItem("encodedToken");
   };
 
@@ -40,7 +41,7 @@ export default function Nav() {
             {isLoggedIn ? (
               <>
                 <NavLink to="/account/profile">Account</NavLink>
-                <NavLink to="/logout" onClick={() => logoutHandler()}>
+                <NavLink to="/logout" onClick={logoutHandler}>
                   Logout
                 </NavLink>
               </>

@@ -85,8 +85,12 @@ export const ProductContextProvider = ({ children }) => {
     },
   });
   const initialProducts = async () => {
-    const response = await axios.get("/api/products");
-    dispatch({ type: "INITIAL_STATE", payload: response.data.products });
+    try {
+      const response = await axios.get("/api/products");
+      dispatch({ type: "INITIAL_STATE", payload: response.data.products });
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   useEffect(() => {

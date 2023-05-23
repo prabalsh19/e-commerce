@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { createContext } from "react";
 
 export const CartContext = createContext();
@@ -9,21 +9,6 @@ export const CartContextProvider = ({ children }) => {
   const [totalPrice, setTotalPrice] = useState(0);
   const [totalDiscount, setTotalDiscount] = useState(0);
   const encodedToken = localStorage.getItem("encodedToken");
-  useEffect(() => {
-    (async () => {
-      try {
-        const response = await axios.get("/api/user/cart", {
-          headers: {
-            authorization: encodedToken,
-          },
-        });
-
-        setCartItems(response.data.cart);
-      } catch (e) {
-        console.log(e);
-      }
-    })();
-  }, [encodedToken]);
 
   const updateTotalPrice = (cart) => {
     setTotalPrice(() =>

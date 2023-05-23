@@ -1,5 +1,4 @@
 import axios from "axios";
-import { useEffect } from "react";
 import { createContext, useState } from "react";
 
 export const WishlistContext = createContext();
@@ -7,20 +6,6 @@ export const WishlistContext = createContext();
 export const WishlistContextProvider = ({ children }) => {
   const [wishlistItems, setWishlistItems] = useState([]);
   const encodedToken = localStorage.getItem("encodedToken");
-  useEffect(() => {
-    (async () => {
-      try {
-        const response = await axios.get("/api/user/wishlist", {
-          headers: {
-            authorization: encodedToken,
-          },
-        });
-        setWishlistItems(() => response.data.wishlist);
-      } catch (e) {
-        console.log(e);
-      }
-    })();
-  }, [encodedToken]);
 
   const addItemToWishlist = async (product) => {
     try {

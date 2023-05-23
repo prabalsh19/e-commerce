@@ -7,14 +7,20 @@ import { AuthContext } from "../../context/AuthContext";
 import { useContext } from "react";
 import Search from "../search/Search";
 import { ProductContext } from "../../context/ProductContext";
+import { CartContext } from "../../context/CartContext";
+import { WishlistContext } from "../../context/WishlistContext";
 
 export default function Nav() {
   const [showMobileNav, setShowMobileNav] = useState(false);
   const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
+  const { setCartItems } = useContext(CartContext);
+  const { setWishlistItems } = useContext(WishlistContext);
   const { dispatch } = useContext(ProductContext);
 
   const logoutHandler = () => {
     setIsLoggedIn(false);
+    setCartItems(() => []);
+    setWishlistItems(() => []);
     localStorage.removeItem("encodedToken");
   };
 

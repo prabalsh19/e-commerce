@@ -9,12 +9,16 @@ export const WishlistContextProvider = ({ children }) => {
   const encodedToken = localStorage.getItem("encodedToken");
   useEffect(() => {
     (async () => {
-      const response = await axios.get("/api/user/wishlist", {
-        headers: {
-          authorization: encodedToken,
-        },
-      });
-      setWishlistItems(() => response.data.wishlist);
+      try {
+        const response = await axios.get("/api/user/wishlist", {
+          headers: {
+            authorization: encodedToken,
+          },
+        });
+        setWishlistItems(() => response.data.wishlist);
+      } catch (e) {
+        console.log(e);
+      }
     })();
   }, [encodedToken]);
 

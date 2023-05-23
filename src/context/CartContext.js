@@ -10,21 +10,19 @@ export const CartContextProvider = ({ children }) => {
   const [totalDiscount, setTotalDiscount] = useState(0);
   const encodedToken = localStorage.getItem("encodedToken");
   useEffect(() => {
-    if (encodedToken) {
-      (async () => {
-        try {
-          const response = await axios.get("/api/user/cart", {
-            headers: {
-              authorization: encodedToken,
-            },
-          });
+    (async () => {
+      try {
+        const response = await axios.get("/api/user/cart", {
+          headers: {
+            authorization: encodedToken,
+          },
+        });
 
-          setCartItems(response.data.cart);
-        } catch (e) {
-          console.log(e);
-        }
-      })();
-    }
+        setCartItems(response.data.cart);
+      } catch (e) {
+        console.log(e);
+      }
+    })();
   }, [encodedToken]);
 
   const updateTotalPrice = (cart) => {

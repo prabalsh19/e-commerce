@@ -9,7 +9,7 @@ function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState({ hasError: false, message: "" });
-  const { setIsLoggedIn } = useContext(AuthContext);
+  const { setIsLoggedIn, setUserDetails } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -24,12 +24,15 @@ function Login() {
 
       if (response.status === 200) {
         setIsLoggedIn(true);
+        setUserDetails(response.data.foundUser);
+
         localStorage.setItem("encodedToken", response.data.encodedToken);
         location.state
           ? navigate(location?.state?.location?.pathname)
           : navigate("/");
       }
     } catch (e) {
+      setIsLoggedIn(false);
       setError(() => ({ hasError: true, message: e.response.data.errors[0] }));
     }
   };

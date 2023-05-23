@@ -13,6 +13,10 @@ import Wishlist from "./pages/Wishlist/Wishlist.jsx";
 import Login from "./pages/Login/Login";
 import SignUp from "./pages/SignUp/SignUp";
 import Auth from "./auth/Auth";
+import Logout from "./pages/Logout/Logout";
+import Account from "./pages/Account/Account";
+import Profile from "./pages/Account/component/Profile";
+import Address from "./pages/Account/component/Address";
 
 // Call make Server
 makeServer();
@@ -50,6 +54,15 @@ const router = createBrowserRouter([
       { path: "/wishlist/product-details/:id", element: <ProductDetails /> },
       { path: "/login", element: <Login /> },
       { path: "/sign-up", element: <SignUp /> },
+      { path: "/logout", element: <Logout /> },
+      {
+        path: "/account",
+        element: <Account />,
+        children: [
+          { path: "profile", element: <Profile /> },
+          { path: "address", element: <Address /> },
+        ],
+      },
     ],
   },
 ]);

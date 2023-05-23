@@ -1,0 +1,14 @@
+.logout-container {
+  display: flex;
+  min-height: 80vh;
+
+  align-items: center;
+  flex-direction: column;
+}
+.logout-container > h1 {
+  margin-top: 8rem;
+}
+.logout-container > a {
+  color: blue;
+  text-decoration: underline;
+}

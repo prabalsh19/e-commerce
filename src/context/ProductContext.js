@@ -84,7 +84,6 @@ export const ProductContextProvider = ({ children }) => {
       rating: null,
     },
   });
-  console.log(state.condition.categories);
   const initialProducts = async () => {
     const response = await axios.get("/api/products");
     dispatch({ type: "INITIAL_STATE", payload: response.data.products });

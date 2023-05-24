@@ -13,7 +13,8 @@ import { WishlistContext } from "../../context/WishlistContext";
 export default function Nav() {
   const [showMobileNav, setShowMobileNav] = useState(false);
   const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
-  const { setCartItems } = useContext(CartContext);
+  const { setCartItems, setTotalPrice, setTotalDiscount } =
+    useContext(CartContext);
   const { setWishlistItems } = useContext(WishlistContext);
   const { dispatch } = useContext(ProductContext);
 
@@ -21,6 +22,8 @@ export default function Nav() {
     setIsLoggedIn(false);
     setCartItems(() => []);
     setWishlistItems(() => []);
+    setTotalPrice(0);
+    setTotalDiscount(0);
     localStorage.removeItem("encodedToken");
   };
 

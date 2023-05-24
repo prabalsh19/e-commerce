@@ -3,6 +3,7 @@ ul {
 }
 .nav__logo {
   cursor: pointer;
+  width: 10rem;
 }
 .nav-container {
   background-color: black;

@@ -9,6 +9,7 @@ import Search from "../search/Search";
 import { ProductContext } from "../../context/ProductContext";
 import { CartContext } from "../../context/CartContext";
 import { WishlistContext } from "../../context/WishlistContext";
+import logo from "./Screenshot_2023-05-25_001903-removebg-preview.png";
 
 export default function Nav() {
   const [showMobileNav, setShowMobileNav] = useState(false);
@@ -31,7 +32,8 @@ export default function Nav() {
     <div className="nav-container">
       <nav className="nav">
         <NavLink to="/" onClick={() => dispatch({ type: "RESET" })}>
-          <h1 className="nav__logo">COMMERCE</h1>
+          <img className="nav__logo" src={logo} alt="" />
+          {/* <h1 className="nav__logo">COMMERCE</h1> */}
         </NavLink>
         <Search />
 

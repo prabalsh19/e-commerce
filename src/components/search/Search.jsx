@@ -1,7 +1,7 @@
 import SearchIcon from "@mui/icons-material/Search";
 import { useContext, useState } from "react";
 import { ProductContext } from "../../context/ProductContext";
-import SearchResult from "./component/SearchResult";
+
 import { useNavigate } from "react-router-dom";
 
 const Search = () => {
@@ -27,7 +27,6 @@ const Search = () => {
       <button type="submit">
         <SearchIcon />
       </button>
-      <SearchResult />
     </form>
   );
 };

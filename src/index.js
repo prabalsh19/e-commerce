@@ -18,6 +18,7 @@ import Account from "./pages/Account/Account";
 import Profile from "./pages/Account/component/Profile";
 import Address from "./pages/Account/component/Address";
 import Checkout from "./pages/Checkout/Checkout";
+import OrderSuccess from "./pages/OrderSuccess/OrderSuccess";
 
 // Call make Server
 makeServer();
@@ -57,6 +58,7 @@ const router = createBrowserRouter([
       { path: "/sign-up", element: <SignUp /> },
       { path: "/logout", element: <Logout /> },
       { path: "/checkout", element: <Checkout /> },
+      { path: "/order-success", element: <OrderSuccess /> },
       {
         path: "/account",
         element: <Account />,

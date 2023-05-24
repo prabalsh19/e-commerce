@@ -1,8 +1,49 @@
 import { useContext } from "react";
 import { CartContext } from "../../../context/CartContext";
 import "./CartSummary.css";
-function CartSummary() {
-  const { cartItems, totalPrice, totalDiscount } = useContext(CartContext);
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+function CartSummary({ selectedAddress }) {
+  const {
+    cartItems,
+    totalPrice,
+    totalDiscount,
+    setCartItems,
+    setTotalPrice,
+    setTotalDiscount,
+  } = useContext(CartContext);
+  const navigate = useNavigate();
+  const orderHandler = () => {
+    if (selectedAddress.name) {
+      toast.success("Order Placed", {
+        position: "bottom-right",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
+
+      setCartItems(() => []);
+      setTotalPrice(0);
+      setTotalDiscount(0);
+
+      navigate("/order-success");
+    } else {
+      toast.info("Please Select Address", {
+        position: "bottom-right",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
+    }
+  };
   return (
     <div className="cart-summary-container">
       <h4>ORDER SUMMARY</h4>
@@ -24,7 +65,9 @@ function CartSummary() {
         <span>Total Amount</span>
         <span>₹{totalPrice + totalDiscount}</span>
       </div>
-      <button className="checkout-btn">PLACE ORDER</button>
+      <button className="checkout-btn" onClick={orderHandler}>
+        PLACE ORDER
+      </button>
     </div>
   );
 }

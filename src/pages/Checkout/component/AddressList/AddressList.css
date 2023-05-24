@@ -6,6 +6,10 @@
   margin-bottom: 1rem;
   cursor: pointer;
 }
+.individual-address label {
+  cursor: pointer;
+  min-width: 40vw;
+}
 .individual-address h3 {
   margin: 10px 0;
 }

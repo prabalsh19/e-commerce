@@ -7,11 +7,15 @@ const Wishlist = () => {
   return (
     <>
       <ul className="wishlist-container">
-        {wishlistItems.map((item) => (
-          <li key={item._id}>
-            <WishlistCard product={item} />
-          </li>
-        ))}
+        {wishlistItems.length < 1 ? (
+          <h1>You haven't added anything in the wishlist yet.</h1>
+        ) : (
+          wishlistItems.map((item) => (
+            <li key={item._id}>
+              <WishlistCard product={item} />
+            </li>
+          ))
+        )}
       </ul>
     </>
   );

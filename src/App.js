@@ -11,6 +11,7 @@ import ScrollToTop from "./utils/ScrollToTop";
 import { WishlistContextProvider } from "./context/WishlistContext";
 import { AuthContextProvider } from "./context/AuthContext";
 import { ToastContainer } from "react-toastify";
+import { AddressContextProvider } from "./context/address-context";
 
 function App() {
   return (
@@ -20,11 +21,13 @@ function App() {
         <AuthContextProvider>
           <CartContextProvider>
             <WishlistContextProvider>
-              <Nav />
-              <ToastContainer />
-              <Outlet />
+              <AddressContextProvider>
+                <Nav />
+                <ToastContainer />
+                <Outlet />
 
-              <Footer />
+                <Footer />
+              </AddressContextProvider>
             </WishlistContextProvider>
           </CartContextProvider>
         </AuthContextProvider>

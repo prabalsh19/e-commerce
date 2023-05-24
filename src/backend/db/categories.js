@@ -16,17 +16,18 @@ export const categories = [
   {
     _id: uuid(),
     alt: "product",
-    category: "Noise_Cancelling",
-    image:
-      "https://res.cloudinary.com/dgzehngjw/image/upload/v1651052852/evolt-ecommerce/2_rf00wy.jpg",
-  },
-  {
-    _id: uuid(),
-    alt: "product",
     category: "Wireless",
     image:
       "https://res.cloudinary.com/dgzehngjw/image/upload/v1651052856/evolt-ecommerce/3_kgau6t.jpg",
   },
+  {
+    _id: uuid(),
+    alt: "product",
+    category: "Noise_Cancelling",
+    image:
+      "https://res.cloudinary.com/dgzehngjw/image/upload/v1651052852/evolt-ecommerce/2_rf00wy.jpg",
+  },
+
   {
     _id: uuid(),
     alt: "product",

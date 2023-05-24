@@ -17,11 +17,10 @@ export default function Nav() {
   const { setWishlistItems } = useContext(WishlistContext);
   const { dispatch } = useContext(ProductContext);
 
-  const logoutHandler = () => {
-    console.log("here");
+  const logoutHandler = async () => {
     setIsLoggedIn(false);
-    setCartItems([]);
-    setWishlistItems([]);
+    setCartItems(() => []);
+    setWishlistItems(() => []);
     localStorage.removeItem("encodedToken");
   };
 

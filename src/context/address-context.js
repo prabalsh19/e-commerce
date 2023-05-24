@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { createContext } from "react";
+import { v4 as uuid } from "uuid";
 
 export const addressContext = createContext();
 
 export const AddressContextProvider = ({ children }) => {
   const [addresses, setAddresses] = useState([
     {
+      id: uuid(),
       name: "Rahul Singh",
       mobile: "02222015042",
       pincode: "400002",

@@ -1,0 +1,11 @@
+.individual-address {
+  display: flex;
+  gap: 10px;
+  border: 2px solid var(--primary-color);
+  padding: 10px;
+  margin-bottom: 1rem;
+  cursor: pointer;
+}
+.individual-address h3 {
+  margin: 10px 0;
+}

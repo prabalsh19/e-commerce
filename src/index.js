@@ -17,6 +17,7 @@ import Logout from "./pages/Logout/Logout";
 import Account from "./pages/Account/Account";
 import Profile from "./pages/Account/component/Profile";
 import Address from "./pages/Account/component/Address";
+import Checkout from "./pages/Checkout/Checkout";
 
 // Call make Server
 makeServer();
@@ -55,6 +56,7 @@ const router = createBrowserRouter([
       { path: "/login", element: <Login /> },
       { path: "/sign-up", element: <SignUp /> },
       { path: "/logout", element: <Logout /> },
+      { path: "/checkout", element: <Checkout /> },
       {
         path: "/account",
         element: <Account />,

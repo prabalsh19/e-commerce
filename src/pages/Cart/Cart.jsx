@@ -1,9 +1,8 @@
 import { useContext } from "react";
 import "./Cart.css";
 import { CartContext } from "../../context/CartContext";
-
-import CartSummary from "./CartSummary/CartSummary";
 import CartItemCard from "./CartItemCard/CartItemCard";
+import PriceDetail from "./PriceDetail/PriceDetail";
 
 function Cart() {
   const { cartItems } = useContext(CartContext);
@@ -19,7 +18,7 @@ function Cart() {
               <CartItemCard key={item._id} {...item} />
             ))}
           </div>
-          <CartSummary />
+          <PriceDetail />
         </>
       )}
     </div>

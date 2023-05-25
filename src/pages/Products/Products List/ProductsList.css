@@ -8,3 +8,38 @@
   padding: 1rem;
   background-color: var(--background-color);
 }
+.filter-btn-mobile {
+  display: none;
+}
+
+@media screen and (width<=1024px) {
+  #hide {
+    display: none;
+  }
+  #footer {
+    display: none;
+  }
+  .products-container {
+    padding-bottom: 5rem;
+  }
+  .filter-btn-mobile {
+    height: 4rem;
+    font-size: 1.1rem;
+    display: block;
+    position: fixed;
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    bottom: 0;
+    width: 100vw;
+    text-align: center;
+    padding: 10px;
+    z-index: 99;
+  }
+  .filter-btn-mobile > p {
+    margin: 0;
+    margin-bottom: 10px;
+  }
+  .filter-btn-mobile::before {
+    content: "^";
+  }
+}

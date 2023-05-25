@@ -6,7 +6,7 @@ import { grey } from "@mui/material/colors";
 import "./Footer.css";
 function Footer() {
   return (
-    <footer>
+    <footer id="footer">
       <div className="footer-links">
         <a
           href="https://www.twitter.com/prabalsh19"

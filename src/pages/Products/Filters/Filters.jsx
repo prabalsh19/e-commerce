@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import "./Filters.css";
 import { ProductContext } from "../../../context/ProductContext";
-function Filters() {
+function Filters({ showFilterMobile, setShowFilterMobile, setShowFilterBtn }) {
   const [rangeValue, setRangeValue] = useState(1);
   const { state, dispatch } = useContext(ProductContext);
   const submitHandler = (e) => {
@@ -10,7 +10,7 @@ function Filters() {
     setRangeValue(1);
   };
   return (
-    <div className="filters-container">
+    <div className="filters-container" id={showFilterMobile ? "" : "hide"}>
       <form action="" onSubmit={submitHandler}>
         <div className="heading-container">
           <h3>Filters</h3>
@@ -128,6 +128,13 @@ function Filters() {
             />
           </div>
         </ul>
+        <div
+          className="pseudo"
+          onClick={() => {
+            setShowFilterMobile(false);
+            setShowFilterBtn(true);
+          }}
+        ></div>
       </form>
     </div>
   );

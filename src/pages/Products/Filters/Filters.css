@@ -36,6 +36,23 @@ input[type="range"] {
 
 @media screen and (width<=1024px) {
   .filters-container {
-    display: none;
+    position: fixed;
+    height: 100%;
+    width: 100vw;
+    z-index: 3;
+    background-color: white;
+  }
+  .pseudo::before {
+    content: "Apply";
+    display: inline-block;
+    font-size: 1.2rem;
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    margin-top: 1rem;
+    padding: 10px 15px;
+    border-radius: 10px;
+  }
+  .filters-container h4 {
+    margin-top: 3rem;
   }
 }

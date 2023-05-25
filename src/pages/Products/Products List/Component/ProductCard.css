@@ -75,7 +75,7 @@
   background-color: transparent;
   cursor: pointer;
   padding: 5px;
-  z-index: 99;
+  z-index: 2;
 }
 #disable-cursor {
   cursor: no-drop;

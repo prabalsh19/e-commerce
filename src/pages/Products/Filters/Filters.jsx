@@ -6,9 +6,9 @@ function Filters({ showFilterMobile, setShowFilterMobile, setShowFilterBtn }) {
   const { state, dispatch } = useContext(ProductContext);
   const submitHandler = (e) => {
     e.preventDefault();
-    e.target.reset();
     setRangeValue(1);
   };
+  console.log(state.condition.categories);
   return (
     <div className="filters-container" id={showFilterMobile ? "" : "hide"}>
       <form action="" onSubmit={submitHandler}>
@@ -24,6 +24,7 @@ function Filters({ showFilterMobile, setShowFilterMobile, setShowFilterBtn }) {
             <input
               onClick={() => dispatch({ type: "PRICE", payload: "HTL" })}
               type="radio"
+              checked={state.condition.price?.includes("HTL")}
               name="price"
               id="HTL"
             />
@@ -32,6 +33,7 @@ function Filters({ showFilterMobile, setShowFilterMobile, setShowFilterBtn }) {
           <li>
             <input
               onClick={() => dispatch({ type: "PRICE", payload: "LTH" })}
+              checked={state.condition.price?.includes("LTH")}
               type="radio"
               name="price"
               id="LTH"

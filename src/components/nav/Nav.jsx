@@ -10,6 +10,7 @@ import { ProductContext } from "../../context/ProductContext";
 import { CartContext } from "../../context/CartContext";
 import { WishlistContext } from "../../context/WishlistContext";
 import logo from "./Screenshot_2023-05-25_001903-removebg-preview.png";
+import MobileSearch from "../search/MobileSearch";
 
 export default function Nav() {
   const [showMobileNav, setShowMobileNav] = useState(false);
@@ -33,7 +34,6 @@ export default function Nav() {
       <nav className="nav">
         <NavLink to="/" onClick={() => dispatch({ type: "RESET" })}>
           <img className="nav__logo" src={logo} alt="" />
-          {/* <h1 className="nav__logo">COMMERCE</h1> */}
         </NavLink>
         <Search />
 
@@ -71,10 +71,8 @@ export default function Nav() {
                 fontSize="large"
               />
               <ul>
-                <div className="mobile-search-container">
-                  <input type="text" />
-                  <button>SEARCH</button>
-                </div>
+                <MobileSearch setShowMobileNav={setShowMobileNav} />
+
                 <NavLink onClick={() => setShowMobileNav(false)} to="/products">
                   Products
                 </NavLink>

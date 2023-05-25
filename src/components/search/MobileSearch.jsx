@@ -4,18 +4,19 @@ import { ProductContext } from "../../context/ProductContext";
 import "../nav/Nav.css";
 import { useNavigate } from "react-router-dom";
 
-const Search = () => {
+const MobileSearch = ({ setShowMobileNav }) => {
   const [searchQuery, setSearchQuery] = useState("");
   const { state, dispatch } = useContext(ProductContext);
   const navigate = useNavigate();
   const submitHandler = (e) => {
     e.preventDefault();
+    setShowMobileNav(false);
     navigate("/products");
     dispatch({ type: "SEARCH", payload: searchQuery });
   };
 
   return (
-    <form onSubmit={submitHandler} className="nav__search-container">
+    <form onSubmit={submitHandler} className="nav__mobile-search-container">
       <input
         value={state.condition.search}
         type="text"
@@ -31,4 +32,4 @@ const Search = () => {
   );
 };
 
-export default Search;
+export default MobileSearch;

@@ -4,7 +4,7 @@ import { CartContext } from "../../../context/CartContext";
 import { NavLink } from "react-router-dom";
 
 function PriceDetail() {
-  const { cartItems, totalPrice, totalDiscount } = useContext(CartContext);
+  const { cartItems, totalPrice } = useContext(CartContext);
 
   return (
     <div className="cart-summary-container">
@@ -21,7 +21,7 @@ function PriceDetail() {
 
       <div className="total-amount">
         <span>Total Amount</span>
-        <span>₹{totalPrice + totalDiscount}</span>
+        <span>₹{totalPrice}</span>
       </div>
       <NavLink to="/checkout">
         <button className="checkout-btn">PLACE ORDER</button>

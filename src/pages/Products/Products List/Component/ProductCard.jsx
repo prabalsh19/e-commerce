@@ -13,10 +13,10 @@ function ProductCard({ product }) {
   const { cartItems, addItemToCart } = useContext(CartContext);
   const { wishlistItems, addItemToWishlist, removeFromWishlist } =
     useContext(WishlistContext);
-  const [disableCursor, setDisableCursor] = useState(false);
   const productExistInCart = cartItems.some((item) => item._id === _id);
   const productExistInWishlist = wishlistItems.some((item) => item._id === _id);
 
+  const [disableCursor, setDisableCursor] = useState(false);
   const disableCursorHandler = () => {
     setDisableCursor(true);
     setTimeout(() => {
@@ -28,11 +28,13 @@ function ProductCard({ product }) {
     <div className="product-card">
       {productExistInWishlist ? (
         <>
-          <button className="add-to-wishlist-btn">
+          <button className="add-to-wishlist-btn" disabled={disableCursor}>
             <FavoriteIcon
               onClick={() => {
+                disableCursorHandler();
                 removeFromWishlist(_id);
               }}
+              id={`${disableCursor ? "disable-cursor" : ""}`}
               sx={{
                 color: "red",
               }}
@@ -40,11 +42,13 @@ function ProductCard({ product }) {
           </button>
         </>
       ) : (
-        <button className="add-to-wishlist-btn">
+        <button className="add-to-wishlist-btn" disabled={disableCursor}>
           <FavoriteIcon
             onClick={() => {
+              disableCursorHandler();
               addItemToWishlist(product);
             }}
+            id={`${disableCursor ? "disable-cursor" : ""}`}
             sx={{
               color: "grey",
             }}
@@ -73,6 +77,7 @@ function ProductCard({ product }) {
         <NavLink to="/cart">
           <button
             className={`add-to-cart-btn `}
+            disabled={disableCursor}
             id={`${disableCursor ? "disable-cursor" : ""}`}
           >
             GO TO CART
@@ -82,6 +87,7 @@ function ProductCard({ product }) {
         <button
           className={`add-to-cart-btn `}
           id={`${disableCursor ? "disable-cursor" : ""}`}
+          disabled={disableCursor}
           onClick={() => {
             disableCursorHandler();
             addItemToCart(product);

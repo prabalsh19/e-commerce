@@ -19,6 +19,14 @@ function ProductDetails() {
   const productExistInCart = cartItems.some((item) => item._id === id);
   const productExistInWishlist = wishlistItems.some((item) => item._id === id);
 
+  const [disableCursor, setDisableCursor] = useState(false);
+  const disableCursorHandler = () => {
+    setDisableCursor(true);
+    setTimeout(() => {
+      setDisableCursor(false);
+    }, 1000);
+  };
+
   useEffect(() => {
     (async () => {
       try {
@@ -70,7 +78,10 @@ function ProductDetails() {
             ) : (
               <button
                 className="product-details__add-to-cart-btn"
+                id={`${disableCursor ? "disable-cursor" : ""}`}
+                disabled={disableCursor}
                 onClick={() => {
+                  disableCursorHandler();
                   addItemToCart(selectedProduct);
                 }}
               >
@@ -84,9 +95,12 @@ function ProductDetails() {
             ) : (
               <button
                 className="product-details__add-to-wishlist-btn"
+                disabled={disableCursor}
                 onClick={() => {
+                  disableCursorHandler();
                   addItemToWishlist(selectedProduct);
                 }}
+                id={`${disableCursor ? "disable-cursor" : ""}`}
               >
                 ADD TO WISHLIST
               </button>

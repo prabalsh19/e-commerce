@@ -3,7 +3,7 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 
 import "./ProductCard.css";
 import { NavLink } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { CartContext } from "../../../../context/CartContext";
 import { WishlistContext } from "../../../../context/WishlistContext";
 
@@ -13,9 +13,16 @@ function ProductCard({ product }) {
   const { cartItems, addItemToCart } = useContext(CartContext);
   const { wishlistItems, addItemToWishlist, removeFromWishlist } =
     useContext(WishlistContext);
-
+  const [disableCursor, setDisableCursor] = useState(false);
   const productExistInCart = cartItems.some((item) => item._id === _id);
   const productExistInWishlist = wishlistItems.some((item) => item._id === _id);
+
+  const disableCursorHandler = () => {
+    setDisableCursor(true);
+    setTimeout(() => {
+      setDisableCursor(false);
+    }, 1000);
+  };
 
   return (
     <div className="product-card">
@@ -64,12 +71,19 @@ function ProductCard({ product }) {
       </NavLink>
       {productExistInCart ? (
         <NavLink to="/cart">
-          <button className="add-to-cart-btn">GO TO CART</button>
+          <button
+            className={`add-to-cart-btn `}
+            id={`${disableCursor ? "disable-cursor" : ""}`}
+          >
+            GO TO CART
+          </button>
         </NavLink>
       ) : (
         <button
-          className="add-to-cart-btn"
+          className={`add-to-cart-btn `}
+          id={`${disableCursor ? "disable-cursor" : ""}`}
           onClick={() => {
+            disableCursorHandler();
             addItemToCart(product);
           }}
         >

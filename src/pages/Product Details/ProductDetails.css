@@ -6,9 +6,12 @@ a {
   display: flex;
   gap: 1rem;
   justify-content: center;
+
+  min-height: 90vh;
 }
 .product-details-container > img {
   width: 23rem;
+  height: max-content;
   aspect-ratio: 4/5;
   object-fit: contain;
   padding: 1rem;

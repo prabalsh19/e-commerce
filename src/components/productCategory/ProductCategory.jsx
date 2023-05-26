@@ -25,20 +25,20 @@ function ProductCategory() {
   return (
     <ul className="product-category-container">
       {productCategoryList.map(({ id, image, category }) => (
-        <NavLink key={id} to="/products">
-          <li
-            onClick={() =>
-              dispatch({
-                type: "CATEGORIES",
-                payload: { isChecked: true, value: category.toLowerCase() },
-              })
-            }
-            className="product-category-item"
-          >
+        <li
+          onClick={() =>
+            dispatch({
+              type: "CATEGORIES",
+              payload: { isChecked: true, value: category.toLowerCase() },
+            })
+          }
+          className="product-category-item"
+        >
+          <NavLink key={id} to="/products">
             <img src={image} alt="" />
             <span>{category.split("_").join(" ")}</span>
-          </li>
-        </NavLink>
+          </NavLink>
+        </li>
       ))}
     </ul>
   );

@@ -10,6 +10,7 @@
   padding: 5rem 2rem;
   max-width: 22rem;
   margin: auto;
+  min-height: 90vh;
 }
 .signup-container > h2 {
   margin-top: 0;

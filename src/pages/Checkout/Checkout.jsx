@@ -6,7 +6,7 @@ import { useState } from "react";
 function Checkout() {
   const [selectedAddress, setSeletedAddress] = useState({});
   const getSelectedAddress = (address) => {
-    console.log("here");
+    
     setSeletedAddress(address);
   };
   return (

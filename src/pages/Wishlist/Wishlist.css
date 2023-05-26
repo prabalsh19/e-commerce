@@ -3,5 +3,6 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: 1rem;
-  min-height: 80vh;
+  min-height: 100vh;
+  margin: 1rem;
 }

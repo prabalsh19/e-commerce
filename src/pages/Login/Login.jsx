@@ -26,6 +26,10 @@ function Login() {
       setUserDetails(response.data.foundUser);
 
       localStorage.setItem("encodedToken", response.data.encodedToken);
+      localStorage.setItem(
+        "userDetails",
+        JSON.stringify(response.data.foundUser)
+      );
       location.state
         ? navigate(location?.state?.location?.pathname)
         : navigate("/");

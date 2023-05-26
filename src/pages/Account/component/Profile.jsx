@@ -1,10 +1,21 @@
 import "../Account.css";
 import { useContext } from "react";
 import { AuthContext } from "../../../context/AuthContext";
+import { useEffect } from "react";
 
 function Profile() {
-  const { userDetails } = useContext(AuthContext);
+  const { userDetails, setUserDetails } = useContext(AuthContext);
   const { firstName, lastName, email } = userDetails || {};
+
+  const userDetailsFromStorage = JSON.parse(
+    localStorage.getItem("userDetails")
+  );
+
+  useEffect(() => {
+    if (userDetailsFromStorage !== null) {
+      setUserDetails(userDetailsFromStorage);
+    }
+  }, [setUserDetails, userDetailsFromStorage]);
 
   return (
     <div className="profile-container">

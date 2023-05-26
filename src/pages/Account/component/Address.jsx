@@ -128,7 +128,9 @@ function Address() {
               id=""
               required
             >
-              <option disabled>Choose State</option>
+              <option value="" disabled>
+                Choose State
+              </option>
               {stateArray.map((state, index) => (
                 <option key={index}>{state}</option>
               ))}

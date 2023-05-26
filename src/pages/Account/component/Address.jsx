@@ -137,7 +137,9 @@ function Address() {
           <div className="address-actions">
             <button type="submit">Add</button>
             <button onClick={randomDataHandler}>Random Data</button>
-            <button onClick={resetDataHandler}>Cancel</button>
+            <button type="button" onClick={resetDataHandler}>
+              Cancel
+            </button>
           </div>
         </div>
       </form>

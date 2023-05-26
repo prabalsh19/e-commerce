@@ -31,7 +31,10 @@ function Login() {
         : navigate("/");
     } catch (e) {
       setIsLoggedIn(false);
-      setError(() => ({ hasError: true, message: e.response.data.errors[0] }));
+      setError(() => ({
+        hasError: true,
+        message: e.response?.data?.errors[0],
+      }));
     }
   };
   const guestLoginHandler = async (e) => {

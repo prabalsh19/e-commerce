@@ -7,15 +7,14 @@ function Profile() {
   const { userDetails, setUserDetails } = useContext(AuthContext);
   const { firstName, lastName, email } = userDetails || {};
 
-  const userDetailsFromStorage = JSON.parse(
-    localStorage.getItem("userDetails")
-  );
-
   useEffect(() => {
+    const userDetailsFromStorage = JSON.parse(
+      localStorage.getItem("userDetails")
+    );
     if (userDetailsFromStorage !== null) {
       setUserDetails(userDetailsFromStorage);
     }
-  }, [setUserDetails, userDetailsFromStorage]);
+  }, [setUserDetails]);
 
   return (
     <div className="profile-container">

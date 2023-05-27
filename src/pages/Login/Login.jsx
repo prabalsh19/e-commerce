@@ -4,12 +4,17 @@ import axios from "axios";
 import { AuthContext } from "../../context/AuthContext";
 import { useContext } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { CartContext } from "../../context/CartContext";
+import { WishlistContext } from "../../context/WishlistContext";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState({ hasError: false, message: "" });
   const { isLoggedIn, setIsLoggedIn, setUserDetails } = useContext(AuthContext);
+  const { setCartItems, updateTotalPrice, updateTotalDiscount } =
+    useContext(CartContext);
+  const { setWishlistItems } = useContext(WishlistContext);
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -30,6 +35,21 @@ function Login() {
         "userDetails",
         JSON.stringify(response.data.foundUser)
       );
+      const cartResponse = await axios.get("/api/user/cart", {
+        headers: {
+          authorization: response.data.encodedToken,
+        },
+      });
+      setCartItems(cartResponse.data.cart);
+      updateTotalPrice(cartResponse.data.cart);
+      updateTotalDiscount(cartResponse.data.cart);
+      const wishListResponse = await axios.get("/api/user/wishlist", {
+        headers: {
+          authorization: response.data.encodedToken,
+        },
+      });
+      setWishlistItems(wishListResponse.data.wishlist);
+
       location.state
         ? navigate(location?.state?.location?.pathname)
         : navigate("/");
@@ -47,7 +67,7 @@ function Login() {
   };
   useEffect(() => {
     isLoggedIn ? navigate("/account/profile") : navigate("/login");
-  }, [isLoggedIn, location, navigate]);
+  }, [isLoggedIn, navigate]);
   return (
     <form autoComplete="off" onSubmit={loginHandler} action="">
       <div className="login-container">

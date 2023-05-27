@@ -17,6 +17,9 @@
   border-right: 5px solid var(--primary-color);
   padding: 0 1rem;
 }
+.filters-container input {
+  cursor: pointer;
+}
 .filters-container li {
   margin-bottom: 5px;
 }

@@ -20,7 +20,7 @@ export default function Nav() {
   const { setWishlistItems } = useContext(WishlistContext);
   const { dispatch } = useContext(ProductContext);
 
-  const logoutHandler = async () => {
+  const logoutHandler = () => {
     setIsLoggedIn(false);
     setCartItems(() => []);
     setWishlistItems(() => []);

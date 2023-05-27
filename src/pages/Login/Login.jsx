@@ -46,9 +46,7 @@ function Login() {
     setPassword("adarshbalika");
   };
   useEffect(() => {
-    isLoggedIn
-      ? navigate(location?.state?.location?.pathname)
-      : navigate("/account/profile");
+    isLoggedIn ? navigate("/account/profile") : navigate("/login");
   }, [isLoggedIn, location, navigate]);
   return (
     <form autoComplete="off" onSubmit={loginHandler} action="">

@@ -51,7 +51,7 @@ function ProductDetails() {
               .fill(" ")
               .map((arr, index) =>
                 index < selectedProduct?.rating ? (
-                  <StarIcon key={index} sx={{ color: "yellow" }} />
+                  <StarIcon key={index} sx={{ color: "rgb(253,161,28)" }} />
                 ) : (
                   <StarIcon key={index} sx={{ color: "grey" }} />
                 )

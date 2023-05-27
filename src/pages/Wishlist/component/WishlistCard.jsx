@@ -32,9 +32,16 @@ function WishlistCard({ product }) {
     <div className="product-card">
       {productExistInWishlist ? (
         <>
-          <button className="add-to-wishlist-btn">
+          <button
+            className="add-to-wishlist-btn"
+            id={`${disableCursor ? "disable-cursor" : ""}`}
+            onClick={() => {
+              disableCursorHandler();
+              removeFromWishlist(_id);
+            }}
+            disabled={disableCursor}
+          >
             <FavoriteIcon
-              onClick={() => removeFromWishlist(_id)}
               sx={{
                 color: "red",
               }}
@@ -42,7 +49,15 @@ function WishlistCard({ product }) {
           </button>
         </>
       ) : (
-        <button className="add-to-wishlist-btn">
+        <button
+          onClick={() => {
+            disableCursorHandler();
+            addItemToWishlist(product);
+          }}
+          id={`${disableCursor ? "disable-cursor" : ""}`}
+          disabled={disableCursor}
+          className="add-to-wishlist-btn"
+        >
           <FavoriteIcon
             onClick={() => addItemToWishlist(product)}
             sx={{
@@ -72,6 +87,7 @@ function WishlistCard({ product }) {
       {productExistInCart ? (
         <button
           onClick={() => {
+            disableCursorHandler();
             toast.success("Quantity Increased By +1", {
               position: "bottom-right",
               autoClose: 1000,
@@ -85,6 +101,8 @@ function WishlistCard({ product }) {
             increaseQuantity(_id);
           }}
           className="add-to-cart-btn"
+          id={`${disableCursor ? "disable-cursor" : ""}`}
+          disabled={disableCursor}
         >
           Increase Quantity
         </button>
@@ -96,6 +114,7 @@ function WishlistCard({ product }) {
             disableCursorHandler();
             addItemToCart(product);
           }}
+          disabled={disableCursor}
         >
           MOVE TO CART
         </button>

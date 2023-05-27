@@ -6,7 +6,7 @@ function AddressList({ selectedAddress }) {
   const { addresses } = useContext(addressContext);
 
   return (
-    <div>
+    <div className="addresses-container">
       <h3>Address Detail</h3>
       {addresses.map((address) => (
         <div key={address.id} className="individual-address">

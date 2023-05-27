@@ -28,13 +28,16 @@ function ProductCard({ product }) {
     <div className="product-card">
       {productExistInWishlist ? (
         <>
-          <button className="add-to-wishlist-btn" disabled={disableCursor}>
+          <button
+            onClick={() => {
+              disableCursorHandler();
+              removeFromWishlist(_id);
+            }}
+            id={`${disableCursor ? "disable-cursor" : ""}`}
+            className="add-to-wishlist-btn"
+            disabled={disableCursor}
+          >
             <FavoriteIcon
-              onClick={() => {
-                disableCursorHandler();
-                removeFromWishlist(_id);
-              }}
-              id={`${disableCursor ? "disable-cursor" : ""}`}
               sx={{
                 color: "red",
               }}
@@ -42,13 +45,16 @@ function ProductCard({ product }) {
           </button>
         </>
       ) : (
-        <button className="add-to-wishlist-btn" disabled={disableCursor}>
+        <button
+          onClick={() => {
+            disableCursorHandler();
+            addItemToWishlist(product);
+          }}
+          id={`${disableCursor ? "disable-cursor" : ""}`}
+          className="add-to-wishlist-btn"
+          disabled={disableCursor}
+        >
           <FavoriteIcon
-            onClick={() => {
-              disableCursorHandler();
-              addItemToWishlist(product);
-            }}
-            id={`${disableCursor ? "disable-cursor" : ""}`}
             sx={{
               color: "grey",
             }}

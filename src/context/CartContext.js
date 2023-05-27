@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { createContext } from "react";
 import { toast } from "react-toastify";
 
@@ -9,24 +9,6 @@ export const CartContextProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
   const [totalDiscount, setTotalDiscount] = useState(0);
-
-  useEffect(() => {
-    (async () => {
-      try {
-        const encodedToken = localStorage.getItem("encodedToken");
-        if (encodedToken != null) {
-          const response = await axios.get("/api/user/cart", {
-            headers: {
-              authorization: encodedToken,
-            },
-          });
-          setCartItems(response.data.cart);
-        }
-      } catch (e) {
-        console.error(e);
-      }
-    })();
-  }, []);
 
   const updateTotalPrice = (cart) => {
     setTotalPrice(() =>

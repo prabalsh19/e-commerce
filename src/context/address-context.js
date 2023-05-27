@@ -8,7 +8,7 @@ export const AddressContextProvider = ({ children }) => {
   const [addresses, setAddresses] = useState([
     {
       id: uuid(),
-      name: "Rahul Singh",
+      name: "Rahul Singh (Demo)",
       mobile: "02222015042",
       pincode: "400002",
       address:

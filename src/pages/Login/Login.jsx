@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import "./Login.css";
 import axios from "axios";
 import { AuthContext } from "../../context/AuthContext";
@@ -65,9 +65,9 @@ function Login() {
     setEmail("adarshbalika@gmail.com");
     setPassword("adarshbalika");
   };
-  useEffect(() => {
-    isLoggedIn ? navigate("/account/profile") : navigate("/login");
-  }, [isLoggedIn, navigate]);
+  if (isLoggedIn) {
+    navigate("/");
+  }
   return (
     <form autoComplete="off" onSubmit={loginHandler} action="">
       <div className="login-container">

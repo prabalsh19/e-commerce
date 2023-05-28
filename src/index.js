@@ -54,14 +54,21 @@ const router = createBrowserRouter([
         ),
       },
       { path: "/wishlist/product-details/:id", element: <ProductDetails /> },
-      { path: "/login", element: <Login /> },
+      {
+        path: "/login",
+        element: <Login />,
+      },
       { path: "/sign-up", element: <SignUp /> },
       { path: "/logout", element: <Logout /> },
       { path: "/checkout", element: <Checkout /> },
       { path: "/order-success", element: <OrderSuccess /> },
       {
         path: "/account",
-        element: <Account />,
+        element: (
+          <Auth>
+            <Account />
+          </Auth>
+        ),
         children: [
           { path: "profile", element: <Profile /> },
           { path: "address", element: <Address /> },

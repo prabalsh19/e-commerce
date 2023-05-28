@@ -16,8 +16,8 @@ function ProductDetails() {
   const { isLoggedIn } = useContext(AuthContext);
   const { id } = useParams();
 
-  const productExistInCart = cartItems.some((item) => item._id === id);
-  const productExistInWishlist = wishlistItems.some((item) => item._id === id);
+  const productExistInCart = cartItems.some((item) => item._id === +id);
+  const productExistInWishlist = wishlistItems.some((item) => item._id === +id);
 
   const [disableCursor, setDisableCursor] = useState(false);
   const disableCursorHandler = () => {

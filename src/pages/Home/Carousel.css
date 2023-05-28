@@ -1,0 +1,11 @@
+.carousel-img {
+  height: 90vh;
+  width: 100vw;
+}
+
+@media screen and (width<=1024px) {
+  .carousel-img {
+    height: fit-content;
+    min-height: 40vh;
+  }
+}

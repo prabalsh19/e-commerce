@@ -1,4 +1,4 @@
-import React from "react";
+import "./Carousel.css";
 import { default as MaterialCarousel } from "react-material-ui-carousel";
 import Boat from "../../assets/img/Boat.jpg";
 import Marshall from "../../assets/img/Marshall.png";
@@ -23,7 +23,7 @@ function Carousel() {
     },
   ];
   return (
-    <MaterialCarousel fullHeightHover={false}>
+    <MaterialCarousel>
       {items.map((item) => (
         <Item key={item.id} item={item} />
       ))}
@@ -34,11 +34,7 @@ function Carousel() {
 function Item({ item }) {
   return (
     <Link to={`/products/product-details/${item.id}`}>
-      <img
-        alt={item.alt}
-        style={{ minHeight: "30vh", width: "100vw" }}
-        src={item.img}
-      />
+      <img alt={item.alt} className="carousel-img" src={item.img} />
     </Link>
   );
 }

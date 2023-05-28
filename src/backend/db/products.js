@@ -24,7 +24,7 @@ export const products = [
     rating: 3,
   },
   {
-    _id: uuid(),
+    _id: 1,
     type: "speaker",
     brand: "marshall",
     addedInYear: 2022,
@@ -41,7 +41,7 @@ export const products = [
     rating: 5,
   },
   {
-    _id: uuid(),
+    _id: 0,
     brand: "boat",
     type: "wireless",
     addedInYear: 2020,
@@ -161,7 +161,7 @@ export const products = [
     rating: 4,
   },
   {
-    _id: uuid(),
+    _id: 2,
     brand: "boat",
     type: "wireless",
     addedInYear: 2022,

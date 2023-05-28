@@ -23,24 +23,27 @@ function ProductCategory() {
   }, []);
   if (productCategoryList.length === 0) return <Loader />;
   return (
-    <ul className="product-category-container">
-      {productCategoryList.map(({ id, image, category }) => (
-        <li
-          onClick={() =>
-            dispatch({
-              type: "CATEGORIES",
-              payload: { isChecked: true, value: category.toLowerCase() },
-            })
-          }
-          className="product-category-item"
-        >
-          <NavLink key={id} to="/products">
-            <img src={image} alt="" />
-            <span>{category.split("_").join(" ")}</span>
-          </NavLink>
-        </li>
-      ))}
-    </ul>
+    <>
+      <h2 className="product-category-heading">Product Categories</h2>
+      <ul className="product-category-container">
+        {productCategoryList.map(({ id, image, category }) => (
+          <li
+            onClick={() =>
+              dispatch({
+                type: "CATEGORIES",
+                payload: { isChecked: true, value: category.toLowerCase() },
+              })
+            }
+            className="product-category-item"
+          >
+            <NavLink key={id} to="/products">
+              <img src={image} alt="" />
+              <span>{category.split("_").join(" ")}</span>
+            </NavLink>
+          </li>
+        ))}
+      </ul>
+    </>
   );
 }
 

@@ -4,15 +4,22 @@ a {
 ul {
   padding-inline-start: 0;
 }
+.product-category-heading {
+  margin-top: 2rem;
+  margin-bottom: 0;
+  text-align: center;
+  font-style: italic;
+  text-decoration: underline;
+}
 .product-category-container {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 2rem;
-  margin: 5rem 0;
   padding: 1rem;
   min-height: 80vh;
   width: 100%;
   align-items: center;
+  margin-top: 0;
 }
 
 .product-category-item {

@@ -4,8 +4,11 @@ import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 
 function OrderSuccess() {
   const date = new Date();
-  const day = date.getDate();
-  const month = date.toLocaleString("default", { month: "long" });
+  const futureData = +date + 86400000 * 3;
+  const dateString = new Date(futureData).toLocaleString("default", {
+    month: "long",
+    day: "numeric",
+  });
 
   return (
     <div className="order-success-container">
@@ -14,10 +17,7 @@ function OrderSuccess() {
         Placed Successfully
       </h1>
       <p>
-        Your order will be delivered by{" "}
-        <span>
-          {day + 3}' {month}
-        </span>
+        Your order will be delivered by <span>{dateString}'</span>
       </p>
       <Link to="/products">Explore More</Link>
     </div>

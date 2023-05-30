@@ -1,18 +1,20 @@
 import { useState } from "react";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { signUpService } from "../../services/services";
 import "./SignUp.css";
 
 function SignUp() {
   const [formData, setFormData] = useState({
-    fName: "",
-    lName: "",
+    firstName: "",
+    lastName: "",
     email: "",
     password: "",
     cPassword: "",
     showPass: false,
     showCPass: false,
   });
+  const { firstName, lastName, email, password } = formData;
+
   const [error, setError] = useState({ hasError: false, message: "" });
   const navigate = useNavigate();
   const signupHandler = async (e) => {
@@ -23,10 +25,13 @@ function SignUp() {
         formData.password.length > 0 &&
         formData.password === formData.cPassword
       ) {
-        const response = await axios.post("/api/auth/signup", {
-          ...formData,
-        });
-        console.log(response);
+        const response = await signUpService(
+          firstName,
+          lastName,
+          email,
+          password
+        );
+
         if (response.status === 201) {
           navigate("/login");
         }
@@ -45,25 +50,25 @@ function SignUp() {
       <div className="signup-container">
         <h2>Sign up</h2>
 
-        <label htmlFor="fName">First Name</label>
+        <label htmlFor="firstName">First Name</label>
         <input
           required
-          value={formData.fName}
+          value={formData.firstName}
           onChange={(e) =>
-            setFormData((prev) => ({ ...prev, fName: e.target.value }))
+            setFormData((prev) => ({ ...prev, firstName: e.target.value }))
           }
           type="text"
-          name="fName"
+          name="firstName"
         />
-        <label htmlFor="lName">Last Name</label>
+        <label htmlFor="lastName">Last Name</label>
         <input
           required
-          value={formData.lName}
+          value={formData.lastName}
           onChange={(e) =>
-            setFormData((prev) => ({ ...prev, lName: e.target.value }))
+            setFormData((prev) => ({ ...prev, lastName: e.target.value }))
           }
           type="text"
-          name="lName"
+          name="lastName"
         />
         <label htmlFor="email">Email</label>
         <input
@@ -119,6 +124,9 @@ function SignUp() {
         <button type="submit" className="auth-btn">
           Sign up
         </button>
+        <p className="move-to-signup-text">
+          Already have an account? <Link to="/login">Log In</Link>
+        </p>
       </div>
     </form>
   );

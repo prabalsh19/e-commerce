@@ -47,7 +47,7 @@ export const WishlistContextProvider = ({ children }) => {
         });
       }
     } catch (e) {
-      console.log(e);
+      console.error(e);
     }
   };
   const removeFromWishlist = async (id) => {
@@ -84,7 +84,7 @@ export const WishlistContextProvider = ({ children }) => {
         });
       }
     } catch (e) {
-      console.log(e);
+      console.error(e);
     }
   };
   const value = {

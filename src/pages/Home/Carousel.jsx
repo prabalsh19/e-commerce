@@ -1,24 +1,25 @@
-import "./Carousel.css";
+import { Link } from "react-router-dom";
 import { default as MaterialCarousel } from "react-material-ui-carousel";
 import Boat from "../../assets/img/Boat.jpg";
 import Marshall from "../../assets/img/Marshall.png";
 import BoatRocker from "../../assets/img/Boat-rockers.jpg";
-import { Link } from "react-router-dom";
+import "./Carousel.css";
 
 function Carousel() {
-  var items = [
+  let items = [
     {
       id: 0,
+      alt: "Boat Airdope Ad",
       img: Boat,
     },
     {
       id: 1,
-      alt: "Hello World!",
+      alt: "Marshall Headphones Ad",
       img: Marshall,
     },
     {
       id: 2,
-      alt: "Hello World!",
+      alt: "Boat Rockerz 450 Ad",
       img: BoatRocker,
     },
   ];

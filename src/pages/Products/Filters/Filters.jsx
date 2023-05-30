@@ -8,7 +8,7 @@ function Filters({ showFilterMobile, setShowFilterMobile, setShowFilterBtn }) {
     e.preventDefault();
     setRangeValue(1);
   };
-  console.log(state.condition.categories);
+
   return (
     <div className="filters-container" id={showFilterMobile ? "" : "hide"}>
       <form action="" onSubmit={submitHandler}>
@@ -24,7 +24,7 @@ function Filters({ showFilterMobile, setShowFilterMobile, setShowFilterBtn }) {
             <input
               onClick={() => dispatch({ type: "PRICE", payload: "HTL" })}
               type="radio"
-              checked={state.condition.price?.includes("HTL")}
+              checked={state.filters.price?.includes("HTL")}
               name="price"
               id="HTL"
             />
@@ -33,7 +33,7 @@ function Filters({ showFilterMobile, setShowFilterMobile, setShowFilterBtn }) {
           <li>
             <input
               onClick={() => dispatch({ type: "PRICE", payload: "LTH" })}
-              checked={state.condition.price?.includes("LTH")}
+              checked={state.filters.price?.includes("LTH")}
               type="radio"
               name="price"
               id="LTH"
@@ -51,7 +51,7 @@ function Filters({ showFilterMobile, setShowFilterMobile, setShowFilterBtn }) {
                   payload: { isChecked: e.target.checked, value: "wired" },
                 })
               }
-              checked={state.condition.categories.includes("wired")}
+              checked={state.filters.categories.includes("wired")}
               type="checkbox"
               name="categories"
               id=""
@@ -69,7 +69,7 @@ function Filters({ showFilterMobile, setShowFilterMobile, setShowFilterBtn }) {
                   },
                 })
               }
-              checked={state.condition.categories.includes("noise_cancelling")}
+              checked={state.filters.categories.includes("noise_cancelling")}
               type="checkbox"
               name="categories"
               id=""
@@ -84,7 +84,7 @@ function Filters({ showFilterMobile, setShowFilterMobile, setShowFilterBtn }) {
                   payload: { isChecked: e.target.checked, value: "wireless" },
                 })
               }
-              checked={state.condition.categories.includes("wireless")}
+              checked={state.filters.categories.includes("wireless")}
               type="checkbox"
               name="categories"
               id=""
@@ -99,7 +99,7 @@ function Filters({ showFilterMobile, setShowFilterMobile, setShowFilterBtn }) {
                   payload: { isChecked: e.target.checked, value: "speaker" },
                 })
               }
-              checked={state.condition.categories.includes("speaker")}
+              checked={state.filters.categories.includes("speaker")}
               type="checkbox"
               name="categories"
               id=""

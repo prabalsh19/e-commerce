@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import { createContext } from "react";
 import { toast } from "react-toastify";
+import { addToCartService, deleteFromCartService } from "../services/services";
 
 export const CartContext = createContext();
 
@@ -30,17 +31,7 @@ export const CartContextProvider = ({ children }) => {
     const encodedToken = localStorage.getItem("encodedToken");
     try {
       if (encodedToken !== null) {
-        const response = await axios.post(
-          "/api/user/cart",
-          {
-            product,
-          },
-          {
-            headers: {
-              authorization: encodedToken,
-            },
-          }
-        );
+        const response = await addToCartService(encodedToken, product);
         setCartItems(() => response.data.cart);
         updateTotalPrice(response.data.cart);
         updateTotalDiscount(response.data.cart);
@@ -67,24 +58,21 @@ export const CartContextProvider = ({ children }) => {
         });
       }
     } catch (e) {
-      console.log(e);
+      console.error(e);
     }
   };
   const removeItemFromCart = async (id) => {
     const encodedToken = localStorage.getItem("encodedToken");
 
     try {
-      const response = await axios.delete(`/api/user/cart/${id}`, {
-        headers: {
-          authorization: encodedToken,
-        },
-      });
+      const response = await deleteFromCartService(encodedToken, id);
+      console.log(response);
       setCartItems(() => response.data.cart);
 
       updateTotalPrice(response.data.cart);
       updateTotalDiscount(response.data.cart);
     } catch (e) {
-      console.log(e);
+      console.error(e);
     }
   };
   const increaseQuantity = async (id) => {
@@ -108,7 +96,7 @@ export const CartContextProvider = ({ children }) => {
       updateTotalPrice(response.data.cart);
       updateTotalDiscount(response.data.cart);
     } catch (e) {
-      console.log(e);
+      console.error(e);
     }
   };
   const decreaseQuantity = async (id) => {
@@ -132,7 +120,7 @@ export const CartContextProvider = ({ children }) => {
       updateTotalPrice(response.data.cart);
       updateTotalDiscount(response.data.cart);
     } catch (e) {
-      console.log(e);
+      console.error(e);
     }
   };
   const value = {

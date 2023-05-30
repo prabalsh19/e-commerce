@@ -1,12 +1,11 @@
 import { NavLink } from "react-router-dom";
 import axios from "axios";
+import { useState, useContext, useEffect } from "react";
 
-import "./ProductCategory.css";
-import { useState } from "react";
-import { useEffect } from "react";
 import { ProductContext } from "../../context/ProductContext";
-import { useContext } from "react";
+import "./ProductCategory.css";
 import Loader from "../loader/Loader";
+import { getCategories } from "../../services/services";
 
 function ProductCategory() {
   const { dispatch } = useContext(ProductContext);
@@ -14,10 +13,10 @@ function ProductCategory() {
   useEffect(() => {
     (async () => {
       try {
-        const response = await axios.get("/api/categories");
+        const response = await getCategories();
         setProductCategoryList(response.data.categories);
       } catch (e) {
-        console.log(e);
+        console.error(e);
       }
     })();
   }, []);
@@ -28,6 +27,7 @@ function ProductCategory() {
       <ul className="product-category-container">
         {productCategoryList.map(({ id, image, category }) => (
           <li
+            key={id}
             onClick={() =>
               dispatch({
                 type: "CATEGORIES",

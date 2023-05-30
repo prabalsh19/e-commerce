@@ -1,19 +1,24 @@
+import { useState, useContext } from "react";
 import { NavLink } from "react-router-dom";
+
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
-import "./Nav.css";
-import { useState } from "react";
-import { AuthContext } from "../../context/AuthContext";
-import { useContext } from "react";
+
 import Search from "../search/Search";
+import MobileSearch from "../search/MobileSearch";
+
+import { AuthContext } from "../../context/AuthContext";
 import { ProductContext } from "../../context/ProductContext";
 import { CartContext } from "../../context/CartContext";
 import { WishlistContext } from "../../context/WishlistContext";
-import logo from "./Screenshot_2023-05-25_001903-removebg-preview.png";
-import MobileSearch from "../search/MobileSearch";
+
+import logo from "../../assets/img/Full Logo.png";
+
+import "./Nav.css";
 
 export default function Nav() {
   const [showMobileNav, setShowMobileNav] = useState(false);
+
   const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
   const { setCartItems, setTotalPrice, setTotalDiscount } =
     useContext(CartContext);
@@ -34,24 +39,36 @@ export default function Nav() {
     <div className="nav-container">
       <nav className="nav">
         <NavLink to="/" onClick={() => dispatch({ type: "RESET" })}>
-          <img className="nav__logo" src={logo} alt="" />
+          <img className="nav__logo" src={logo} alt="logo" />
         </NavLink>
         <Search />
 
         <div>
           <ul className="nav-links">
-            <NavLink to="/products">Products</NavLink>
-            <NavLink to="/wishlist">Wishlist</NavLink>
-            <NavLink to="/cart">My Cart</NavLink>
+            <li>
+              <NavLink to="/products">Products</NavLink>
+            </li>
+            <li>
+              <NavLink to="/wishlist">Wishlist</NavLink>
+            </li>
+            <li>
+              <NavLink to="/cart">My Cart</NavLink>
+            </li>
             {isLoggedIn ? (
               <>
-                <NavLink to="/account/profile">Account</NavLink>
-                <NavLink to="/logout" onClick={logoutHandler}>
-                  Logout
-                </NavLink>
+                <li>
+                  <NavLink to="/account/profile">Account</NavLink>
+                </li>
+                <li>
+                  <NavLink to="/logout" onClick={logoutHandler}>
+                    Logout
+                  </NavLink>
+                </li>
               </>
             ) : (
-              <NavLink to="/login">Login</NavLink>
+              <li>
+                <NavLink to="/login">Login</NavLink>
+              </li>
             )}
           </ul>
 
@@ -72,39 +89,61 @@ export default function Nav() {
                 fontSize="large"
               />
               <ul>
-                <MobileSearch setShowMobileNav={setShowMobileNav} />
-
-                <NavLink onClick={() => setShowMobileNav(false)} to="/products">
-                  Products
-                </NavLink>
-                <NavLink onClick={() => setShowMobileNav(false)} to="/wishlist">
-                  Wishlist
-                </NavLink>
-                <NavLink onClick={() => setShowMobileNav(false)} to="/cart">
-                  My Cart
-                </NavLink>
+                <li>
+                  <MobileSearch setShowMobileNav={setShowMobileNav} />
+                </li>
+                <li>
+                  <NavLink
+                    onClick={() => setShowMobileNav(false)}
+                    to="/products"
+                  >
+                    Products
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    onClick={() => setShowMobileNav(false)}
+                    to="/wishlist"
+                  >
+                    Wishlist
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink onClick={() => setShowMobileNav(false)} to="/cart">
+                    My Cart
+                  </NavLink>
+                </li>
                 {isLoggedIn ? (
                   <>
-                    <NavLink
-                      onClick={() => setShowMobileNav(false)}
-                      to="/account/profile"
-                    >
-                      Account
-                    </NavLink>
-                    <NavLink
-                      to="/logout"
-                      onClick={() => {
-                        setShowMobileNav(false);
-                        logoutHandler();
-                      }}
-                    >
-                      Logout
-                    </NavLink>
+                    <li>
+                      <NavLink
+                        onClick={() => setShowMobileNav(false)}
+                        to="/account/profile"
+                      >
+                        Account
+                      </NavLink>
+                    </li>
+                    <li>
+                      <NavLink
+                        to="/logout"
+                        onClick={() => {
+                          setShowMobileNav(false);
+                          logoutHandler();
+                        }}
+                      >
+                        Logout
+                      </NavLink>
+                    </li>
                   </>
                 ) : (
-                  <NavLink onClick={() => setShowMobileNav(false)} to="/login">
-                    Login
-                  </NavLink>
+                  <li>
+                    <NavLink
+                      onClick={() => setShowMobileNav(false)}
+                      to="/login"
+                    >
+                      Login
+                    </NavLink>
+                  </li>
                 )}
               </ul>
             </div>

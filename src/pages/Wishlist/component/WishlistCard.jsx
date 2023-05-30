@@ -11,7 +11,7 @@ import { useState } from "react";
 function WishlistCard({ product }) {
   const { _id, image, productName, rating, price, oldPrice, discount } =
     product;
-  console.log(product);
+
   const { cartItems, addItemToCart, increaseQuantity } =
     useContext(CartContext);
   const { wishlistItems, addItemToWishlist, removeFromWishlist } =

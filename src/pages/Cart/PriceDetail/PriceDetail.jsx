@@ -11,7 +11,7 @@ function PriceDetail() {
       <h4>PRICE DETAILS</h4>
       <hr />
       {cartItems.map((item) => (
-        <div className="summary-item">
+        <div className="summary-item" key={item.id}>
           <span>
             {item.productName} ({item.qty})
           </span>

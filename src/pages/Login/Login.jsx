@@ -6,6 +6,8 @@ import { useContext } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { CartContext } from "../../context/CartContext";
 import { WishlistContext } from "../../context/WishlistContext";
+import { useEffect } from "react";
+import { getCartService, loginService } from "../../services/services";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -22,10 +24,7 @@ function Login() {
     e.preventDefault();
     try {
       setError(() => ({ hasError: false, message: "" }));
-      const response = await axios.post("/api/auth/login", {
-        email,
-        password,
-      });
+      const response = await loginService(email, password);
 
       setIsLoggedIn(true);
       setUserDetails(response.data.foundUser);
@@ -35,11 +34,7 @@ function Login() {
         "userDetails",
         JSON.stringify(response.data.foundUser)
       );
-      const cartResponse = await axios.get("/api/user/cart", {
-        headers: {
-          authorization: response.data.encodedToken,
-        },
-      });
+      const cartResponse = await getCartService(response?.data?.encodedToken);
       setCartItems(cartResponse.data.cart);
       updateTotalPrice(cartResponse.data.cart);
       updateTotalDiscount(cartResponse.data.cart);
@@ -61,13 +56,17 @@ function Login() {
       }));
     }
   };
-  const guestLoginHandler = async (e) => {
+  const guestLoginHandler = (e) => {
     setEmail("adarshbalika@gmail.com");
     setPassword("adarshbalika");
   };
-  if (isLoggedIn) {
-    navigate("/");
-  }
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigate("/");
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isLoggedIn]);
+
   return (
     <form autoComplete="off" onSubmit={loginHandler} action="">
       <div className="login-container">
@@ -90,11 +89,12 @@ function Login() {
           required
         />
         {error.hasError && <span className="error-msg">{error.message}</span>}
-        <button onClick={guestLoginHandler} type="submit" className="auth-btn">
-          Guest Login
-        </button>
+
         <button type="submit" className="auth-btn">
           Login
+        </button>
+        <button onClick={guestLoginHandler} type="submit" className="auth-btn">
+          Guest Login
         </button>
         <p className="move-to-signup-text">
           Don't Have An Account? <Link to="/sign-up">Sign up</Link>

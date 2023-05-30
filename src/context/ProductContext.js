@@ -18,13 +18,24 @@ const reducer = (state, action) => {
     case "RESET": {
       return {
         ...state,
-        filters: { search: "", price: null, categories: [], rating: "-1" },
+        filters: {
+          search: "",
+          price: { htl: false, lth: false },
+          categories: [],
+          rating: "-1",
+        },
       };
     }
     case "PRICE": {
       return {
         ...state,
-        filters: { ...state.filters, price: action.payload },
+        filters: {
+          ...state.filters,
+          price:
+            action.payload === "lth"
+              ? { htl: false, lth: true }
+              : { htl: true, lth: false },
+        },
       };
     }
 
@@ -63,7 +74,7 @@ const reducer = (state, action) => {
         ...state,
         filters: {
           search: "",
-          price: null,
+          price: { htl: false, lth: false },
           categories: [],
           rating: "-1",
         },
@@ -79,7 +90,7 @@ export const ProductContextProvider = ({ children }) => {
     products: [],
     filters: {
       search: "",
-      price: null,
+      price: { htl: false, lth: false },
       categories: [],
       rating: "-1",
     },
@@ -107,10 +118,10 @@ export const ProductContextProvider = ({ children }) => {
   };
 
   const priceFilterHandler = (arr, filters) => {
-    if (filters.price === null) return arr;
+    if (filters.price.lth === false && filters.price.htl === false) return arr;
 
     return [...arr].sort((a, b) =>
-      filters.price === "LTH" ? a.price - b.price : b.price - a.price
+      filters.price.lth ? a.price - b.price : b.price - a.price
     );
   };
   const categoriesFilterHandler = (arr, filters) => {

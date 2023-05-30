@@ -1,4 +1,3 @@
-import axios from "axios";
 import { useEffect, useReducer } from "react";
 import { createContext } from "react";
 import { getProductsService } from "../services/services";
@@ -19,7 +18,7 @@ const reducer = (state, action) => {
     case "RESET": {
       return {
         ...state,
-        filters: { search: "", price: null, categories: [], rating: null },
+        filters: { search: "", price: null, categories: [], rating: "-1" },
       };
     }
     case "PRICE": {
@@ -55,7 +54,7 @@ const reducer = (state, action) => {
         ...state,
         filters: {
           ...state.filters,
-          rating: Math.abs(action.payload),
+          rating: action.payload,
         },
       };
     }
@@ -66,7 +65,7 @@ const reducer = (state, action) => {
           search: "",
           price: null,
           categories: [],
-          rating: null,
+          rating: "-1",
         },
       };
     }
@@ -82,7 +81,7 @@ export const ProductContextProvider = ({ children }) => {
       search: "",
       price: null,
       categories: [],
-      rating: null,
+      rating: "-1",
     },
   });
   const initialProducts = async () => {
@@ -123,7 +122,7 @@ export const ProductContextProvider = ({ children }) => {
   const ratingFilterHandler = (arr, filters) => {
     if (filters.rating === null) return arr;
 
-    return arr.filter((item) => item.rating >= filters.rating);
+    return arr.filter((item) => item.rating >= Math.abs(filters.rating));
   };
   const filtersArray = [
     searchHandler,

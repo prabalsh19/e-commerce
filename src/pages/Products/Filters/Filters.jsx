@@ -1,20 +1,15 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import "./Filters.css";
 import { ProductContext } from "../../../context/ProductContext";
 function Filters({ showFilterMobile, setShowFilterMobile, setShowFilterBtn }) {
-  const [rangeValue, setRangeValue] = useState(1);
   const { state, dispatch } = useContext(ProductContext);
-  const submitHandler = (e) => {
-    e.preventDefault();
-    setRangeValue(1);
-  };
 
   return (
     <div className="filters-container" id={showFilterMobile ? "" : "hide"}>
-      <form action="" onSubmit={submitHandler}>
+      <form action="">
         <div className="heading-container">
           <h3>Filters</h3>
-          <button type="submit" onClick={() => dispatch({ type: "CLEAR" })}>
+          <button type="button" onClick={() => dispatch({ type: "CLEAR" })}>
             Clear
           </button>
         </div>
@@ -121,10 +116,9 @@ function Filters({ showFilterMobile, setShowFilterMobile, setShowFilterBtn }) {
               step="1"
               type="range"
               onChange={(e) => {
-                setRangeValue(e.target.value);
                 dispatch({ type: "RATING", payload: e.target.value });
               }}
-              value={rangeValue}
+              value={state.filters.rating}
               name=""
               id=""
             />

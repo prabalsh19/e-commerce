@@ -1,6 +1,9 @@
-import axios from "axios";
 import { createContext, useState } from "react";
 import { toast } from "react-toastify";
+import {
+  addToWishlistService,
+  deleteFromWishlistService,
+} from "../services/services";
 
 export const WishlistContext = createContext();
 
@@ -11,17 +14,7 @@ export const WishlistContextProvider = ({ children }) => {
     const encodedToken = localStorage.getItem("encodedToken");
     try {
       if (encodedToken !== null) {
-        const response = await axios.post(
-          "/api/user/wishlist",
-          {
-            product,
-          },
-          {
-            headers: {
-              authorization: encodedToken,
-            },
-          }
-        );
+        const response = await addToWishlistService(encodedToken, product);
 
         setWishlistItems(() => response.data.wishlist);
         toast.success("Added To The Wishlist", {
@@ -55,11 +48,7 @@ export const WishlistContextProvider = ({ children }) => {
 
     try {
       if (encodedToken !== null) {
-        const response = await axios.delete(`/api/user/wishlist/${id}`, {
-          headers: {
-            authorization: encodedToken,
-          },
-        });
+        const response = await deleteFromWishlistService(encodedToken, id);
         setWishlistItems(() => response.data.wishlist);
         toast.info("Removed From Wishlist", {
           position: "bottom-right",

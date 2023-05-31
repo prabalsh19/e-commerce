@@ -1,8 +1,11 @@
-import axios from "axios";
 import { useState } from "react";
 import { createContext } from "react";
 import { toast } from "react-toastify";
-import { addToCartService, deleteFromCartService } from "../services/services";
+import {
+  addToCartService,
+  cartQuantityService,
+  deleteFromCartService,
+} from "../services/services";
 
 export const CartContext = createContext();
 
@@ -79,19 +82,7 @@ export const CartContextProvider = ({ children }) => {
     const encodedToken = localStorage.getItem("encodedToken");
 
     try {
-      const response = await axios.post(
-        `/api/user/cart/${id}`,
-        {
-          action: {
-            type: "increment",
-          },
-        },
-        {
-          headers: {
-            authorization: encodedToken,
-          },
-        }
-      );
+      const response = await cartQuantityService(encodedToken, id, "increment");
       setCartItems(response.data.cart);
       updateTotalPrice(response.data.cart);
       updateTotalDiscount(response.data.cart);
@@ -103,19 +94,7 @@ export const CartContextProvider = ({ children }) => {
     const encodedToken = localStorage.getItem("encodedToken");
 
     try {
-      const response = await axios.post(
-        `/api/user/cart/${id}`,
-        {
-          action: {
-            type: "decrement",
-          },
-        },
-        {
-          headers: {
-            authorization: encodedToken,
-          },
-        }
-      );
+      const response = await cartQuantityService(encodedToken, id, "decrement");
       setCartItems(response.data.cart);
       updateTotalPrice(response.data.cart);
       updateTotalDiscount(response.data.cart);

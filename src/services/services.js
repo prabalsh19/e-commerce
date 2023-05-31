@@ -22,9 +22,35 @@ export const addToCartService = async (encodedToken, product) =>
     { headers: { authorization: encodedToken } }
   );
 
-export const deleteFromCartService = async (encodedToken, id) => {
-  console.log(id);
-  return axios.delete("/api/user/cart/" + id, {
+export const deleteFromCartService = async (encodedToken, id) =>
+  axios.delete("/api/user/cart/" + id, {
     headers: { authorization: encodedToken },
   });
-};
+
+export const cartQuantityService = async (encodedToken, id, actionType) =>
+  axios.post(
+    "/api/user/cart/" + id,
+    {
+      action: {
+        type: actionType,
+      },
+    },
+    {
+      headers: { authorization: encodedToken },
+    }
+  );
+
+export const getWishlistService = async (encodedToken) =>
+  axios.get("/api/user/wishlist", { headers: { authorization: encodedToken } });
+
+export const addToWishlistService = async (encodedToken, product) =>
+  axios.post(
+    "/api/user/wishlist",
+    { product },
+    { headers: { authorization: encodedToken } }
+  );
+
+export const deleteFromWishlistService = async (encodedToken, id) =>
+  axios.delete("/api/user/wishlist/" + id, {
+    headers: { authorization: encodedToken },
+  });

@@ -1,5 +1,4 @@
 import { NavLink } from "react-router-dom";
-import axios from "axios";
 import { useState, useContext, useEffect } from "react";
 
 import { ProductContext } from "../../context/ProductContext";
@@ -14,7 +13,7 @@ function ProductCategory() {
     (async () => {
       try {
         const response = await getCategories();
-        setProductCategoryList(response.data.categories);
+        setProductCategoryList(response?.data?.categories);
       } catch (e) {
         console.error(e);
       }

@@ -1,13 +1,16 @@
 import { useState } from "react";
 import "./Login.css";
-import axios from "axios";
 import { AuthContext } from "../../context/AuthContext";
 import { useContext } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { CartContext } from "../../context/CartContext";
 import { WishlistContext } from "../../context/WishlistContext";
 import { useEffect } from "react";
-import { getCartService, loginService } from "../../services/services";
+import {
+  getCartService,
+  getWishlistService,
+  loginService,
+} from "../../services/services";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -38,11 +41,9 @@ function Login() {
       setCartItems(cartResponse.data.cart);
       updateTotalPrice(cartResponse.data.cart);
       updateTotalDiscount(cartResponse.data.cart);
-      const wishListResponse = await axios.get("/api/user/wishlist", {
-        headers: {
-          authorization: response.data.encodedToken,
-        },
-      });
+      const wishListResponse = await getWishlistService(
+        response?.data?.encodedToken
+      );
       setWishlistItems(wishListResponse.data.wishlist);
 
       location.state

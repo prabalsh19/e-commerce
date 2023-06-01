@@ -14,9 +14,26 @@
 
 .filters-container {
   accent-color: var(--primary-color);
-  border-right: 5px solid var(--primary-color);
+  border-right: 3px solid var(--primary-color);
+  max-height: calc(100vh - 5rem);
+  overflow-y: auto;
+  position: sticky;
+  top: 5rem;
   padding: 0 1rem;
 }
+.filters-container::-webkit-scrollbar {
+  width: 3px;
+}
+
+.filters-container::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+.filters-container::-webkit-scrollbar-thumb {
+  background-color: black;
+  outline: 1px solid black;
+}
+
 .filters-container input,
 label {
   cursor: pointer;

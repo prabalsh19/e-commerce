@@ -1,10 +1,9 @@
 import { useContext } from "react";
-import { CartContext } from "../../../context/CartContext";
+import { CartContext, AuthContext } from "../../../context/";
 import "./CartSummary.css";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import Logo from "../../../assets/img/Logo.png";
-import { AuthContext } from "../../../context/AuthContext";
 
 function CartSummary({ selectedAddress }) {
   const {

@@ -1,15 +1,11 @@
 import "./ProductDetails.css";
-import { useContext } from "react";
-import { useState } from "react";
+import { useState, useContext, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
-import { useEffect } from "react";
 import StarIcon from "@mui/icons-material/Star";
-import { CartContext } from "../../context/CartContext";
-import { WishlistContext } from "../../context/WishlistContext";
-import { AuthContext } from "../../context/AuthContext";
+import { AuthContext, CartContext, WishlistContext } from "../../context";
 import { getProductService } from "../../services/services";
 
-function ProductDetails() {
+export function ProductDetails() {
   const { cartItems, addItemToCart } = useContext(CartContext);
   const { wishlistItems, addItemToWishlist } = useContext(WishlistContext);
   const [selectedProduct, setSelectedProduct] = useState(null);
@@ -129,5 +125,3 @@ function ProductDetails() {
     )
   );
 }
-
-export default ProductDetails;

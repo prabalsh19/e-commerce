@@ -3,7 +3,7 @@ import Filters from "./Filters/Filters";
 import ProductsList from "./Products List/ProductsList";
 import "./Products.css";
 
-function Products() {
+export function Products() {
   const [showFilterMobile, setShowFilterMobile] = useState(false);
   const [showFilterBtn, setShowFilterBtn] = useState(true);
   return (
@@ -21,5 +21,3 @@ function Products() {
     </div>
   );
 }
-
-export default Products;

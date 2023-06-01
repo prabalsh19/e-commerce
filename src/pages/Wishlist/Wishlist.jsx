@@ -1,8 +1,8 @@
 import "./Wishlist.css";
-import { WishlistContext } from "../../context/WishlistContext";
+import { WishlistContext } from "../../context";
 import { useContext } from "react";
 import WishlistCard from "./component/WishlistCard";
-const Wishlist = () => {
+export function Wishlist() {
   const { wishlistItems } = useContext(WishlistContext);
   return (
     <>
@@ -19,6 +19,4 @@ const Wishlist = () => {
       </ul>
     </>
   );
-};
-
-export default Wishlist;
+}

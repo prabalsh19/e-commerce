@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
 import { default as MaterialCarousel } from "react-material-ui-carousel";
-import Boat from "../../assets/img/Boat.jpg";
-import Marshall from "../../assets/img/Marshall.png";
-import BoatRocker from "../../assets/img/Boat-rockers.jpg";
+import Boat from "../../../../assets/img/Boat.jpg";
+import Marshall from "../../../../assets/img/Marshall.png";
+import BoatRocker from "../../../../assets/img/Boat-rockers.jpg";
+
 import "./Carousel.css";
 
 function Carousel() {

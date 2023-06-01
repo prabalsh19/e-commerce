@@ -4,7 +4,7 @@ import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import { grey } from "@mui/material/colors";
 
 import "./Footer.css";
-function Footer() {
+export function Footer() {
   return (
     <footer id="footer">
       <div className="footer-links">
@@ -34,5 +34,3 @@ function Footer() {
     </footer>
   );
 }
-
-export default Footer;

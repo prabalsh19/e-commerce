@@ -2,8 +2,7 @@ import "./CartItemCard.css";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
 import { useContext } from "react";
-import { CartContext } from "../../../context/CartContext";
-import { WishlistContext } from "../../../context/WishlistContext";
+import { CartContext, WishlistContext } from "../../../context";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 

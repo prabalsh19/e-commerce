@@ -1,7 +1,8 @@
-import "./ProductsList.css";
-import ProductCard from "./Component/ProductCard";
-import { ProductContext } from "../../../context/ProductContext";
 import { useContext } from "react";
+import { ProductContext } from "../../../context";
+import ProductCard from "./Component/ProductCard";
+import "./ProductsList.css";
+
 function ProductsList({
   showFilterBtn,
   setShowFilterMobile,
@@ -22,7 +23,7 @@ function ProductsList({
         }}
         className="filter-btn-mobile"
       >
-        <p>Filter</p>
+        <p>Filters</p>
       </div>
     </div>
   );

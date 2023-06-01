@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { signUpService } from "../../services/services";
 import "./SignUp.css";
 
-function SignUp() {
+export function SignUp() {
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -131,5 +131,3 @@ function SignUp() {
     </form>
   );
 }
-
-export default SignUp;

@@ -4,8 +4,7 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import "./ProductCard.css";
 import { NavLink } from "react-router-dom";
 import { useContext, useState } from "react";
-import { CartContext } from "../../../../context/CartContext";
-import { WishlistContext } from "../../../../context/WishlistContext";
+import { CartContext, WishlistContext } from "../../../../context/";
 
 function ProductCard({ product }) {
   const { _id, image, productName, rating, price, oldPrice, discount } =

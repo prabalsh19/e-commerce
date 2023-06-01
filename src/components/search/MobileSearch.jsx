@@ -1,11 +1,11 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
-import SearchInput from "./component/SearchInput";
-import { ProductContext } from "../../context/ProductContext";
+import { SearchInput } from "..";
+import { ProductContext } from "../../context";
 import "../nav/Nav.css";
 
-const MobileSearch = ({ setShowMobileNav }) => {
+export const MobileSearch = ({ setShowMobileNav }) => {
   const { state, dispatch } = useContext(ProductContext);
   const navigate = useNavigate();
   const submitHandler = (e) => {
@@ -21,5 +21,3 @@ const MobileSearch = ({ setShowMobileNav }) => {
     </form>
   );
 };
-
-export default MobileSearch;

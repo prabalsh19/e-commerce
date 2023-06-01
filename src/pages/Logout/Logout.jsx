@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import "./Logout.css";
 
-function Logout() {
+export function Logout() {
   return (
     <div className="logout-container">
       <h1>Successfully Logged Out</h1>
@@ -9,5 +9,3 @@ function Logout() {
     </div>
   );
 }
-
-export default Logout;

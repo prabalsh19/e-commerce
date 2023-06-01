@@ -2,11 +2,9 @@ import StarIcon from "@mui/icons-material/Star";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 
 import { NavLink } from "react-router-dom";
-import { useContext } from "react";
-import { WishlistContext } from "../../../context/WishlistContext";
-import { CartContext } from "../../../context/CartContext";
+import { useState, useContext } from "react";
+import { WishlistContext, CartContext } from "../../../context";
 import { toast } from "react-toastify";
-import { useState } from "react";
 
 function WishlistCard({ product }) {
   const { _id, image, productName, rating, price, oldPrice, discount } =

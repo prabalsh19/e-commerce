@@ -17,7 +17,8 @@
   border-right: 5px solid var(--primary-color);
   padding: 0 1rem;
 }
-.filters-container input {
+.filters-container input,
+label {
   cursor: pointer;
 }
 .filters-container li {
@@ -45,7 +46,7 @@ input[type="range"] {
     z-index: 3;
     background-color: white;
   }
-  .pseudo::before {
+  .apply-btn::before {
     content: "Apply";
     display: inline-block;
     font-size: 1.2rem;

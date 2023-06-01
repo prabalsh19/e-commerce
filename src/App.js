@@ -1,14 +1,16 @@
 import { Outlet } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 
-import Nav from "./components/nav/Nav";
-import Footer from "./components/footer/Footer";
+import { Nav } from "./components";
+import { Footer } from "./components";
 
-import { ProductContextProvider } from "./context/ProductContext";
-import { CartContextProvider } from "./context/CartContext";
-import { WishlistContextProvider } from "./context/WishlistContext";
-import { AuthContextProvider } from "./context/AuthContext";
-import { AddressContextProvider } from "./context/address-context";
+import {
+  ProductContextProvider,
+  CartContextProvider,
+  WishlistContextProvider,
+  AuthContextProvider,
+  AddressContextProvider,
+} from "./context";
 
 import ScrollToTop from "./utils/ScrollToTop";
 

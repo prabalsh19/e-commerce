@@ -2,11 +2,11 @@ import { useContext, useState } from "react";
 import { faker } from "@faker-js/faker";
 import { state as stateArray } from "../../../utils/Constants";
 import "../Account.css";
-import { addressContext } from "../../../context/address-context";
+import { addressContext } from "../../../context";
 import { toast } from "react-toastify";
 import { v4 as uuid } from "uuid";
 
-function Address() {
+export function Address() {
   const { addresses, setAddresses } = useContext(addressContext);
   const initialForm = {
     name: "",
@@ -147,7 +147,7 @@ function Address() {
       </form>
       <div className="addresses-list">
         {addresses.map((address) => (
-          <div className="addresses-list__address">
+          <div key={address.id} className="addresses-list__address">
             <h3>{address.name}</h3>
             <span>{address.mobile}</span>
             <address>{address.address}</address>
@@ -162,5 +162,3 @@ function Address() {
     </>
   );
 }
-
-export default Address;

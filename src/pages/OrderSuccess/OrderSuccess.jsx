@@ -2,7 +2,7 @@ import "./OrderSuccess.css";
 import { Link } from "react-router-dom";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 
-function OrderSuccess() {
+export function OrderSuccess() {
   const date = new Date();
   const futureData = +date + 86400000 * 3;
   const dateString = new Date(futureData).toLocaleString("default", {
@@ -23,5 +23,3 @@ function OrderSuccess() {
     </div>
   );
 }
-
-export default OrderSuccess;

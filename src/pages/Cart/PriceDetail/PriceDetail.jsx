@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import "../CartSummary/CartSummary.css";
-import { CartContext } from "../../../context/CartContext";
+import { CartContext } from "../../../context";
 import { NavLink } from "react-router-dom";
 
 function PriceDetail() {

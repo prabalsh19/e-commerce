@@ -1,12 +1,12 @@
 import { useContext } from "react";
-import { AuthContext } from "../context/AuthContext";
+import { AuthContext } from "../context";
 import { Navigate, useLocation } from "react-router-dom";
 
-const Auth = ({ children }) => {
+function Auth({ children }) {
   const location = useLocation();
-
   const { isLoggedIn } = useContext(AuthContext);
+
   return isLoggedIn ? children : <Navigate to="/login" state={{ location }} />;
-};
+}
 
 export default Auth;

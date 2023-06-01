@@ -1,32 +1,38 @@
 import { NavLink } from "react-router-dom";
-import { useState, useContext, useEffect } from "react";
+import { useContext, useEffect } from "react";
 
-import { ProductContext } from "../../context/ProductContext";
+import { ProductContext } from "../../../../context";
 import "./ProductCategory.css";
-import Loader from "../loader/Loader";
-import { getCategories } from "../../services/services";
+import { Loader } from "../../../../components";
+import { getCategories } from "../../../../services/services";
 
-function ProductCategory() {
-  const { dispatch } = useContext(ProductContext);
-  const [productCategoryList, setProductCategoryList] = useState([]);
+export function ProductCategory() {
+  const { state, dispatch } = useContext(ProductContext);
+
   useEffect(() => {
     (async () => {
       try {
         const response = await getCategories();
-        setProductCategoryList(response?.data?.categories);
+        dispatch({
+          type: "SET_CATEGORIES",
+          payload: response?.data?.categories,
+        });
       } catch (e) {
         console.error(e);
       }
     })();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  if (productCategoryList.length === 0) return <Loader />;
-  return (
+
+  return state.productCategoryList.length === 0 ? (
+    <Loader />
+  ) : (
     <>
       <h2 className="product-category-heading">Product Categories</h2>
       <ul className="product-category-container">
-        {productCategoryList.map(({ id, image, category }) => (
+        {state.productCategoryList.map(({ _id, image, alt, category }) => (
           <li
-            key={id}
+            key={_id}
             onClick={() =>
               dispatch({
                 type: "CATEGORIES",
@@ -35,8 +41,8 @@ function ProductCategory() {
             }
             className="product-category-item"
           >
-            <NavLink key={id} to="/products">
-              <img src={image} alt="" />
+            <NavLink key={_id} to="/products">
+              <img src={image} alt={alt} />
               <span>{category.split("_").join(" ")}</span>
             </NavLink>
           </li>
@@ -45,5 +51,3 @@ function ProductCategory() {
     </>
   );
 }
-
-export default ProductCategory;

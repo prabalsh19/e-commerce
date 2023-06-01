@@ -1,9 +1,9 @@
 import "../Account.css";
 import { useContext } from "react";
-import { AuthContext } from "../../../context/AuthContext";
+import { AuthContext } from "../../../context";
 import { useEffect } from "react";
 
-function Profile() {
+export function Profile() {
   const { userDetails, setUserDetails } = useContext(AuthContext);
   const { firstName, lastName, email } = userDetails || {};
 
@@ -27,5 +27,3 @@ function Profile() {
     </div>
   );
 }
-
-export default Profile;

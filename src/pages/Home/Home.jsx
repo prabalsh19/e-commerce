@@ -1,7 +1,7 @@
-import ProductCategory from "../../components/productCategory/ProductCategory";
-import Carousel from "./Carousel";
+import { ProductCategory } from "./component/productCategory/ProductCategory";
+import Carousel from "./component/Carousel/Carousel";
 
-function Home() {
+export function Home() {
   return (
     <>
       <div className="hero">
@@ -11,5 +11,3 @@ function Home() {
     </>
   );
 }
-
-export default Home;

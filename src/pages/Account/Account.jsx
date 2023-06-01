@@ -1,7 +1,7 @@
 import { NavLink, Outlet } from "react-router-dom";
 import "./Account.css";
 
-function Account() {
+export function Account() {
   return (
     <div className="account-container">
       <div className="modal">
@@ -16,5 +16,3 @@ function Account() {
     </div>
   );
 }
-
-export default Account;

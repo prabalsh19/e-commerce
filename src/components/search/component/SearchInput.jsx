@@ -1,8 +1,8 @@
 import { useContext } from "react";
 import SearchIcon from "@mui/icons-material/Search";
-import { ProductContext } from "../../../context/ProductContext";
+import { ProductContext } from "../../../context";
 
-function SearchInput() {
+export function SearchInput() {
   const { state, dispatch } = useContext(ProductContext);
 
   return (
@@ -20,5 +20,3 @@ function SearchInput() {
     </>
   );
 }
-
-export default SearchInput;

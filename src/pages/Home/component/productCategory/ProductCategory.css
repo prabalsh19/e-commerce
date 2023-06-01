@@ -8,8 +8,6 @@ ul {
   margin-top: 2rem;
   margin-bottom: 0;
   text-align: center;
-  font-style: italic;
-  text-decoration: underline;
 }
 .product-category-container {
   display: grid;

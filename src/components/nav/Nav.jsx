@@ -4,19 +4,20 @@ import { NavLink } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 
-import Search from "../search/Search";
-import MobileSearch from "../search/MobileSearch";
+import { Search, MobileSearch } from "..";
 
-import { AuthContext } from "../../context/AuthContext";
-import { ProductContext } from "../../context/ProductContext";
-import { CartContext } from "../../context/CartContext";
-import { WishlistContext } from "../../context/WishlistContext";
+import {
+  AuthContext,
+  ProductContext,
+  CartContext,
+  WishlistContext,
+} from "../../context";
 
 import logo from "../../assets/img/Full Logo.png";
 
 import "./Nav.css";
 
-export default function Nav() {
+export function Nav() {
   const [showMobileNav, setShowMobileNav] = useState(false);
 
   const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext);

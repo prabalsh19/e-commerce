@@ -1,6 +1,6 @@
 import "./AddressList.css";
 import { useContext } from "react";
-import { addressContext } from "../../../../context/address-context";
+import { addressContext } from "../../../../context";
 
 function AddressList({ selectedAddress }) {
   const { addresses } = useContext(addressContext);

@@ -1,11 +1,9 @@
 import React from "react";
 import MockMan from "mockman-js";
-function Mockbee() {
+export function Mockbee() {
   return (
     <div>
       <MockMan />
     </div>
   );
 }
-
-export default Mockbee;

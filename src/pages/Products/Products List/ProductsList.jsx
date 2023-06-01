@@ -15,6 +15,8 @@ function ProductsList({
       {filteredArray?.map((product) => (
         <ProductCard key={product.id} product={product} />
       ))}
+
+      {/* Filters button for mobile */}
       <div
         id={`${showFilterBtn ? "" : "hide"}`}
         onClick={() => {

@@ -4,6 +4,7 @@ import { Link, useParams } from "react-router-dom";
 import StarIcon from "@mui/icons-material/Star";
 import { AuthContext, CartContext, WishlistContext } from "../../context";
 import { getProductService } from "../../services/services";
+import { useDisableCursor } from "../../utils/useDisableCursor";
 
 export function ProductDetails() {
   const { cartItems, addItemToCart } = useContext(CartContext);
@@ -15,19 +16,28 @@ export function ProductDetails() {
   const productExistInCart = cartItems.some((item) => item._id === id);
   const productExistInWishlist = wishlistItems.some((item) => item._id === id);
 
-  const [disableCursor, setDisableCursor] = useState(false);
-  const disableCursorHandler = () => {
-    setDisableCursor(true);
-    setTimeout(() => {
-      setDisableCursor(false);
-    }, 1000);
-  };
+  const [disableCursor, disableCursorHandler] = useDisableCursor();
+
+  const {
+    _id,
+    image,
+    alt,
+    rating,
+    productName,
+    price,
+    oldPrice,
+    discount,
+    brand,
+    description,
+    type,
+    addedInYear,
+  } = selectedProduct || {};
 
   useEffect(() => {
     (async () => {
       try {
         const response = await getProductService(id);
-        setSelectedProduct(() => response?.data?.product);
+        setSelectedProduct(response?.data?.product);
       } catch (e) {
         console.error(e);
       }
@@ -36,17 +46,15 @@ export function ProductDetails() {
 
   return (
     selectedProduct && (
-      <div key={selectedProduct?._id} className="product-details-container">
-        <img src={selectedProduct?.image} alt={selectedProduct?.alt} />
+      <div key={_id} className="product-details-container">
+        <img src={image} alt={alt} />
         <div>
-          <h2 className="product-details__heading">
-            {selectedProduct?.productName}
-          </h2>
+          <h2 className="product-details__heading">{productName}</h2>
           <p className="product-details__rating-star">
             {Array(5)
               .fill(" ")
               .map((arr, index) =>
-                index < selectedProduct?.rating ? (
+                index < rating ? (
                   <StarIcon key={index} sx={{ color: "rgb(253,161,28)" }} />
                 ) : (
                   <StarIcon key={index} sx={{ color: "grey" }} />
@@ -55,16 +63,10 @@ export function ProductDetails() {
           </p>
           <div className="product-details__price-discount-container">
             <div className="product-details__prices">
-              <span className="product-details__current-price">
-                ₹{+selectedProduct?.price}
-              </span>
-              <span className="product-details__old-price">
-                ₹{+selectedProduct?.oldPrice}
-              </span>
+              <span className="product-details__current-price">₹{+price}</span>
+              <span className="product-details__old-price">₹{+oldPrice}</span>
             </div>
-            <p className="product-details__discount">
-              {selectedProduct?.discount}% OFF
-            </p>
+            <p className="product-details__discount">{discount}% OFF</p>
           </div>
           <div className="action-buttons">
             {productExistInCart && isLoggedIn ? (
@@ -106,19 +108,19 @@ export function ProductDetails() {
           <hr />
           <p>
             <b>Brand: </b>
-            {selectedProduct?.brand}
+            {brand}
           </p>
           <p>
             <b>Description: </b>
-            {selectedProduct?.description}
+            {description}
           </p>
           <p>
             <b>Type: </b>
-            {selectedProduct?.type}
+            {type}
           </p>
           <p>
             <b>Added In Year: </b>
-            {selectedProduct?.addedInYear}
+            {addedInYear}
           </p>
         </div>
       </div>

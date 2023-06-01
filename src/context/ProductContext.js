@@ -1,5 +1,4 @@
-import { useEffect, useReducer } from "react";
-import { createContext } from "react";
+import { useEffect, useReducer, createContext } from "react";
 import { getProductsService } from "../services/services";
 
 export const ProductContext = createContext();
@@ -85,6 +84,7 @@ const reducer = (state, action) => {
     }
 
     default:
+      return state;
   }
 };
 

@@ -4,7 +4,7 @@ import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
 import { useContext } from "react";
 import { CartContext, WishlistContext } from "../../../context";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useDisableCursor } from "../../../utils/useDisableCursor";
 
 function CartItemCard(product) {
   const { _id, image, qty, productName, oldPrice, price, discount } = product;
@@ -13,13 +13,8 @@ function CartItemCard(product) {
   const { wishlistItems, addItemToWishlist } = useContext(WishlistContext);
 
   const productExistInWishlist = wishlistItems.some((item) => item._id === _id);
-  const [disableCursor, setDisableCursor] = useState(false);
-  const disableCursorHandler = () => {
-    setDisableCursor(true);
-    setTimeout(() => {
-      setDisableCursor(false);
-    }, 1000);
-  };
+  const [disableCursor, disableCursorHandler] = useDisableCursor();
+
   return (
     <div className="cart-card-container">
       <img className="card-card__image" src={image} alt="" />

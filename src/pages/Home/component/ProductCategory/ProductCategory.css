@@ -16,7 +16,6 @@ ul {
   grid-template-columns: repeat(4, 1fr);
   gap: 2rem;
   padding: 1rem;
-  min-height: 80vh;
   width: 100%;
   align-items: center;
   margin-top: 0;

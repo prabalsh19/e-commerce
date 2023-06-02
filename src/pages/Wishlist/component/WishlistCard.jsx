@@ -7,6 +7,7 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import { WishlistContext, CartContext } from "../../../context";
 import { useDisableCursor } from "../../../hooks/useDisableCursor";
 import { toastHandler } from "../../../utils/toast";
+import "../Wishlist.css";
 
 function WishlistCard({ product }) {
   const { _id, image, productName, rating, price, oldPrice, discount } =
@@ -59,7 +60,6 @@ function WishlistCard({ product }) {
           />
         </button>
       )}
-
       <NavLink to={`product-details/${_id}`}>
         <img className="product-card__img" src={image} alt="" />
         <div className="heading-rating-container">
@@ -77,32 +77,36 @@ function WishlistCard({ product }) {
           <p className="discount">{discount}% OFF</p>
         </div>
       </NavLink>
-      {productExistInCart ? (
+      <div className="wishlist-actions">
         <button
           onClick={() => {
             disableCursorHandler();
-            toastHandler("success", "Quantity Increased By +1");
-            increaseQuantity(_id);
+            removeFromWishlist(_id);
           }}
           className="add-to-cart-btn"
           id={`${disableCursor ? "disable-cursor" : ""}`}
           disabled={disableCursor}
         >
-          Increase Quantity
+          REMOVE
         </button>
-      ) : (
         <button
           className="add-to-cart-btn"
           id={`${disableCursor ? "disable-cursor" : ""}`}
           onClick={() => {
             disableCursorHandler();
-            addItemToCart(product);
+            productExistInCart
+              ? (() => {
+                  increaseQuantity(_id);
+                  toastHandler("success", "Quantity Increased by +1");
+                })()
+              : addItemToCart(product);
+            removeFromWishlist(_id);
           }}
           disabled={disableCursor}
         >
-          ADD TO CART
+          MOVE TO CART
         </button>
-      )}
+      </div>
     </div>
   );
 }

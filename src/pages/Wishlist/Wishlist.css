@@ -1,8 +1,17 @@
 .wishlist-container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 1rem;
   min-height: 100vh;
-  margin: 1rem;
+  margin: 2rem;
+}
+.empty-wishlist-container {
+  min-height: 100vh;
+  text-align: center;
+}
+.wishlist-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }

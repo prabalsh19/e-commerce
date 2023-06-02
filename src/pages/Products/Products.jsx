@@ -13,6 +13,7 @@ export function Products() {
         setShowFilterMobile={setShowFilterMobile}
         setShowFilterBtn={setShowFilterBtn}
       />
+
       <ProductsList
         setShowFilterBtn={setShowFilterBtn}
         showFilterBtn={showFilterBtn}

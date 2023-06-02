@@ -3,6 +3,7 @@
   width: 100%;
   grid-template-columns: 18% 1fr;
   margin: 0 auto;
+  min-height: 100vh;
 }
 @media screen and (width<=1024px) {
   .products-page-container {

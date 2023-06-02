@@ -10,7 +10,9 @@ function ProductsList({
 }) {
   const { filteredArray } = useContext(ProductContext);
 
-  return (
+  return filteredArray.length === 0 ? (
+    <h2 className="no-products-heading">No Products Found!</h2>
+  ) : (
     <div className="products-container">
       {filteredArray?.map((product) => (
         <ProductCard key={product.id} product={product} />

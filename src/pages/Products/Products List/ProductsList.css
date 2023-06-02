@@ -12,7 +12,9 @@
 .filter-btn-mobile {
   display: none;
 }
-
+.no-products-heading {
+  text-align: center;
+}
 @media screen and (width<=1024px) {
   #hide {
     display: none;

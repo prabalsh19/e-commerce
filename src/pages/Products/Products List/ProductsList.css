@@ -24,6 +24,7 @@
   }
   .products-container {
     padding-bottom: 5rem;
+    justify-content: center;
   }
   .filter-btn-mobile {
     height: 4rem;

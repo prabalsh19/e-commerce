@@ -4,7 +4,6 @@ import "../Nav/Nav.css";
 export const MobileSearch = ({ setShowMobileNav }) => {
   const submitHandler = (e) => {
     e.preventDefault();
-    console.log("here");
     setShowMobileNav(false);
   };
 

@@ -54,3 +54,9 @@ export const deleteFromWishlistService = async (encodedToken, id) =>
   axios.delete("/api/user/wishlist/" + id, {
     headers: { authorization: encodedToken },
   });
+
+export const clearCartService = async (encodedToken, cart) => {
+  cart.forEach(({ _id }) => {
+    deleteFromCartService(encodedToken, _id);
+  });
+};

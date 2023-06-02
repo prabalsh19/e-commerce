@@ -5,6 +5,7 @@ import { CartContext, AuthContext } from "../../../context/";
 import Logo from "../../../assets/img/Logo.png";
 import "./CartSummary.css";
 import { toastHandler } from "../../../utils/toast";
+import { clearCartService } from "../../../services/services";
 
 function CartSummary({ selectedAddress }) {
   const {
@@ -37,6 +38,7 @@ function CartSummary({ selectedAddress }) {
   };
 
   const displayRazorpay = async () => {
+    const encodedToken = localStorage.getItem("encodedToken");
     if (selectedAddress.name) {
       const res = await loadScript(
         "https://checkout.razorpay.com/v1/checkout.js"
@@ -61,7 +63,7 @@ function CartSummary({ selectedAddress }) {
           setCartItems(() => []);
           setTotalPrice(0);
           setTotalDiscount(0);
-
+          clearCartService(encodedToken, cartItems);
           navigate("/order-success");
         },
         prefill: {

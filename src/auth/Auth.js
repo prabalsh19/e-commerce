@@ -1,6 +1,6 @@
 import { useContext } from "react";
-import { AuthContext } from "../context";
 import { Navigate, useLocation } from "react-router-dom";
+import { AuthContext } from "../context";
 
 function Auth({ children }) {
   const location = useLocation();

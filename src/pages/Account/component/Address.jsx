@@ -1,10 +1,10 @@
 import { useContext, useState } from "react";
-import { faker } from "@faker-js/faker";
 import { state as stateArray } from "../../../utils/Constants";
-import "../Account.css";
-import { addressContext } from "../../../context";
-import { toast } from "react-toastify";
 import { v4 as uuid } from "uuid";
+import { addressContext } from "../../../context";
+import "../Account.css";
+import { useRandomForm } from "../../../hooks/useRandomForm";
+import { toastHandler } from "../../../utils/Toast";
 
 export function Address() {
   const { addresses, setAddresses } = useContext(addressContext);
@@ -18,19 +18,14 @@ export function Address() {
     state: "",
   };
   const [formData, setFormData] = useState(initialForm);
+  const { name, mobile, pincode, address, city, alternateNum, state } =
+    formData;
+
+  const getRandomFormData = useRandomForm();
 
   const randomDataHandler = (e) => {
     e.preventDefault();
-    setFormData({
-      id: uuid(),
-      name: faker.person.fullName(),
-      mobile: faker.phone.number("##########"),
-      pincode: faker.location.zipCode("######"),
-      city: faker.location.city(),
-      address: faker.location.streetAddress(),
-      alternateNum: faker.phone.number("##########"),
-      state: stateArray[Math.floor(Math.random() * (stateArray.length - 1))],
-    });
+    setFormData(getRandomFormData);
   };
 
   const formOnChangeHandler = (e) => {
@@ -40,20 +35,8 @@ export function Address() {
   const submitHandler = (e) => {
     e.preventDefault();
     setAddresses((prev) => [...prev, { id: uuid(), ...formData }]);
-    setTimeout(() => {
-      setFormData(initialForm);
-      toast.success("Address added successfully", {
-        position: "bottom-right",
-        autoClose: 1000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: false,
-        draggable: true,
-        progress: undefined,
-        theme: "dark",
-      });
-    }, 500);
-    setFormData(initialForm);
+    resetDataHandler();
+    toastHandler("success", "Address added successfully");
   };
   const resetDataHandler = () => {
     setFormData(initialForm);
@@ -63,11 +46,11 @@ export function Address() {
   };
   return (
     <>
-      <form onSubmit={submitHandler} autoComplete="off">
+      <form onSubmit={submitHandler} spellCheck="false" autoComplete="off">
         <div className="address-container">
           <div className="input-container">
             <input
-              value={formData.name}
+              value={name}
               onChange={formOnChangeHandler}
               type="text"
               name="name"
@@ -75,7 +58,7 @@ export function Address() {
               required
             />
             <input
-              value={formData.mobile}
+              value={mobile}
               onChange={formOnChangeHandler}
               type="number"
               name="mobile"
@@ -85,7 +68,7 @@ export function Address() {
           </div>
           <div className="input-container">
             <input
-              value={formData.pincode}
+              value={pincode}
               onChange={formOnChangeHandler}
               type="number"
               min="1"
@@ -95,7 +78,7 @@ export function Address() {
               required
             />
             <input
-              value={formData.city}
+              value={city}
               onChange={formOnChangeHandler}
               type="text"
               name="city"
@@ -104,7 +87,7 @@ export function Address() {
             />
           </div>
           <textarea
-            value={formData.address}
+            value={address}
             id=""
             onChange={formOnChangeHandler}
             cols="30"
@@ -115,14 +98,14 @@ export function Address() {
           ></textarea>
           <div className="input-container">
             <input
-              value={formData.alternateNum}
+              value={alternateNum}
               onChange={formOnChangeHandler}
               type="tel"
               name="alternateNum"
               placeholder="Alternate Phone (Optional)"
             />
             <select
-              value={formData.state}
+              value={state}
               onChange={formOnChangeHandler}
               name="state"
               id=""
@@ -146,15 +129,15 @@ export function Address() {
         </div>
       </form>
       <div className="addresses-list">
-        {addresses.map((address) => (
-          <div key={address.id} className="addresses-list__address">
-            <h3>{address.name}</h3>
-            <span>{address.mobile}</span>
-            <address>{address.address}</address>
-            <span>{address.city}</span>
-            <span>{address.state}</span>
+        {addresses.map(({ id, name, mobile, address, city, state }) => (
+          <div key={id} className="addresses-list__address">
+            <h3>{name}</h3>
+            <span>{mobile}</span>
+            <address>{address}</address>
+            <span>{city}</span>
+            <span>{state}</span>
             <div className="addresses-list__address-actions">
-              <button onClick={() => deleteAddress(address.id)}>Delete</button>
+              <button onClick={() => deleteAddress(id)}>Delete</button>
             </div>
           </div>
         ))}

@@ -8,7 +8,7 @@ function AddressList({ selectedAddress }) {
   return (
     <div className="addresses-container">
       <h3>Address Detail</h3>
-      {addresses.map((address) => (
+      {addresses?.map((address) => (
         <div key={address.id} className="individual-address">
           <input
             onChange={() => {

@@ -1,16 +1,16 @@
-import "./ProductDetails.css";
 import { useState, useContext, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import StarIcon from "@mui/icons-material/Star";
-import { AuthContext, CartContext, WishlistContext } from "../../context";
+
+import { CartContext, WishlistContext } from "../../context";
 import { getProductService } from "../../services/services";
-import { useDisableCursor } from "../../utils/useDisableCursor";
+import { useDisableCursor } from "../../hooks/useDisableCursor";
+import "./ProductDetails.css";
 
 export function ProductDetails() {
   const { cartItems, addItemToCart } = useContext(CartContext);
   const { wishlistItems, addItemToWishlist } = useContext(WishlistContext);
   const [selectedProduct, setSelectedProduct] = useState(null);
-  const { isLoggedIn } = useContext(AuthContext);
   const { id } = useParams();
 
   const productExistInCart = cartItems.some((item) => item._id === id);
@@ -69,7 +69,7 @@ export function ProductDetails() {
             <p className="product-details__discount">{discount}% OFF</p>
           </div>
           <div className="action-buttons">
-            {productExistInCart && isLoggedIn ? (
+            {productExistInCart ? (
               <button className="product-details__add-to-cart-btn">
                 <Link to="/cart">GO TO CART</Link>
               </button>

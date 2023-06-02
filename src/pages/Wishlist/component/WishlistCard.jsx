@@ -1,11 +1,12 @@
+import { useContext } from "react";
+import { NavLink } from "react-router-dom";
+
 import StarIcon from "@mui/icons-material/Star";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 
-import { NavLink } from "react-router-dom";
-import { useContext } from "react";
 import { WishlistContext, CartContext } from "../../../context";
-import { toast } from "react-toastify";
-import { useDisableCursor } from "../../../utils/useDisableCursor";
+import { useDisableCursor } from "../../../hooks/useDisableCursor";
+import { toastHandler } from "../../../utils/Toast";
 
 function WishlistCard({ product }) {
   const { _id, image, productName, rating, price, oldPrice, discount } =
@@ -52,7 +53,6 @@ function WishlistCard({ product }) {
           className="add-to-wishlist-btn"
         >
           <FavoriteIcon
-            onClick={() => addItemToWishlist(product)}
             sx={{
               color: "grey",
             }}
@@ -81,16 +81,7 @@ function WishlistCard({ product }) {
         <button
           onClick={() => {
             disableCursorHandler();
-            toast.success("Quantity Increased By +1", {
-              position: "bottom-right",
-              autoClose: 1000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: false,
-              draggable: true,
-              progress: undefined,
-              theme: "dark",
-            });
+            toastHandler("success", "Quantity Increased By +1");
             increaseQuantity(_id);
           }}
           className="add-to-cart-btn"

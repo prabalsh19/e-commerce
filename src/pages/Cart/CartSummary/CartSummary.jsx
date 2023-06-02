@@ -1,9 +1,10 @@
 import { useContext } from "react";
-import { CartContext, AuthContext } from "../../../context/";
-import "./CartSummary.css";
-import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+
+import { CartContext, AuthContext } from "../../../context/";
 import Logo from "../../../assets/img/Logo.png";
+import "./CartSummary.css";
+import { toastHandler } from "../../../utils/Toast";
 
 function CartSummary({ selectedAddress }) {
   const {
@@ -55,16 +56,7 @@ function CartSummary({ selectedAddress }) {
         image: Logo,
         handler: function (response) {
           console.log(response);
-          toast.success("Order Placed", {
-            position: "bottom-right",
-            autoClose: 1000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: false,
-            draggable: true,
-            progress: undefined,
-            theme: "dark",
-          });
+          toastHandler("success", "Order Placed");
 
           setCartItems(() => []);
           setTotalPrice(0);
@@ -84,16 +76,7 @@ function CartSummary({ selectedAddress }) {
       const paymentObject = new window.Razorpay(options);
       paymentObject.open();
     } else {
-      toast.info("Please Select Address", {
-        position: "bottom-right",
-        autoClose: 1000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: false,
-        draggable: true,
-        progress: undefined,
-        theme: "dark",
-      });
+      toastHandler("info", "Please Select Address");
     }
   };
   return (

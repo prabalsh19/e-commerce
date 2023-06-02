@@ -1,7 +1,7 @@
 import { useState, useContext, useEffect } from "react";
-import "./Login.css";
-import { AuthContext, CartContext, WishlistContext } from "../../context";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { AuthContext, CartContext, WishlistContext } from "../../context";
+import "./Login.css";
 import {
   getCartService,
   getWishlistService,
@@ -9,13 +9,15 @@ import {
 } from "../../services/services";
 
 export function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [loginInfo, setLoginInfo] = useState({ email: "", password: "" });
+  const { email, password } = loginInfo;
   const [error, setError] = useState({ hasError: false, message: "" });
+
   const { isLoggedIn, setIsLoggedIn, setUserDetails } = useContext(AuthContext);
   const { setCartItems, updateTotalPrice, updateTotalDiscount } =
     useContext(CartContext);
   const { setWishlistItems } = useContext(WishlistContext);
+
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -23,20 +25,24 @@ export function Login() {
     e.preventDefault();
     try {
       setError(() => ({ hasError: false, message: "" }));
+
       const response = await loginService(email, password);
-
       setIsLoggedIn(true);
-      setUserDetails(response.data.foundUser);
+      setUserDetails(response?.data?.foundUser);
 
-      localStorage.setItem("encodedToken", response.data.encodedToken);
+      localStorage.setItem("encodedToken", response?.data?.encodedToken);
       localStorage.setItem(
         "userDetails",
-        JSON.stringify(response.data.foundUser)
+        JSON.stringify(response?.data?.foundUser)
       );
+
+      // Fetching cart on login
       const cartResponse = await getCartService(response?.data?.encodedToken);
-      setCartItems(cartResponse.data.cart);
-      updateTotalPrice(cartResponse.data.cart);
-      updateTotalDiscount(cartResponse.data.cart);
+      setCartItems(cartResponse?.data?.cart);
+      updateTotalPrice(cartResponse?.data?.cart);
+      updateTotalDiscount(cartResponse?.data?.cart);
+
+      // Fetching wishlist on login
       const wishListResponse = await getWishlistService(
         response?.data?.encodedToken
       );
@@ -53,10 +59,11 @@ export function Login() {
       }));
     }
   };
-  const guestLoginHandler = (e) => {
-    setEmail("adarshbalika@gmail.com");
-    setPassword("adarshbalika");
+  const guestLoginHandler = () => {
+    setLoginInfo({ email: "adarshbalika@gmail.com", password: "adarshbalika" });
   };
+
+  // Login inaccessable if loggedin
   useEffect(() => {
     if (isLoggedIn) {
       navigate("/");
@@ -65,12 +72,14 @@ export function Login() {
   }, [isLoggedIn]);
 
   return (
-    <form autoComplete="off" onSubmit={loginHandler} action="">
+    <form autoComplete="off" spellCheck="false" onSubmit={loginHandler}>
       <div className="login-container">
         <h2>Login</h2>
         <label htmlFor="email">Email</label>
         <input
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={(e) =>
+            setLoginInfo((prev) => ({ ...prev, email: e.target.value }))
+          }
           value={email}
           type="email"
           name="email"
@@ -78,11 +87,11 @@ export function Login() {
         />
         <label htmlFor="password">Password</label>
         <input
-          onChange={(e) => setPassword(e.target.value)}
+          onChange={(e) =>
+            setLoginInfo((prev) => ({ ...prev, password: e.target.value }))
+          }
           value={password}
           type="password"
-          name=""
-          id=""
           required
         />
         {error.hasError && <span className="error-msg">{error.message}</span>}

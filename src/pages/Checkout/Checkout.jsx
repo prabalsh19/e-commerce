@@ -1,7 +1,7 @@
-import "./Checkout.css";
+import { useState } from "react";
 import CartSummary from "../Cart/CartSummary/CartSummary";
 import AddressList from "./component/AddressList/AddressList";
-import { useState } from "react";
+import "./Checkout.css";
 
 export function Checkout() {
   const [selectedAddress, setSeletedAddress] = useState({});

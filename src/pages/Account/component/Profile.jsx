@@ -1,7 +1,6 @@
-import "../Account.css";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { AuthContext } from "../../../context";
-import { useEffect } from "react";
+import "../Account.css";
 
 export function Profile() {
   const { userDetails, setUserDetails } = useContext(AuthContext);

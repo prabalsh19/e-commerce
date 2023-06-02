@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom";
 import { useContext } from "react";
 import { CartContext, WishlistContext } from "../../../../context/";
 import "./ProductCard.css";
-import { useDisableCursor } from "../../../../utils/useDisableCursor";
+import { useDisableCursor } from "../../../../hooks/useDisableCursor";
 
 function ProductCard({ product }) {
   const { _id, image, productName, rating, price, oldPrice, discount } =

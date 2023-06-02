@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { createContext } from "react";
-import { toast } from "react-toastify";
 import {
   addToCartService,
   cartQuantityService,
   deleteFromCartService,
 } from "../services/services";
+import { toastHandler } from "../utils/Toast";
 
 export const CartContext = createContext();
 
@@ -38,27 +38,9 @@ export const CartContextProvider = ({ children }) => {
         setCartItems(() => response.data.cart);
         updateTotalPrice(response.data.cart);
         updateTotalDiscount(response.data.cart);
-        toast.success("Added To The Cart", {
-          position: "bottom-right",
-          autoClose: 1000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: false,
-          draggable: true,
-          progress: undefined,
-          theme: "dark",
-        });
+        toastHandler("success", "Added To The Cart");
       } else {
-        toast.info("Please Login First", {
-          position: "bottom-right",
-          autoClose: 1000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: false,
-          draggable: true,
-          progress: undefined,
-          theme: "dark",
-        });
+        toastHandler("info", "Please Login First");
       }
     } catch (e) {
       console.error(e);

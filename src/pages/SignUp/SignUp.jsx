@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { signUpService } from "../../services/services";
+import { loginService, signUpService } from "../../services/services";
+import { AuthContext } from "../../context";
 import "./SignUp.css";
 
 export function SignUp() {
@@ -9,21 +10,25 @@ export function SignUp() {
     lastName: "",
     email: "",
     password: "",
-    cPassword: "",
-    showPass: false,
-    showCPass: false,
+    confirmPassword: "",
+    showPassword: false,
+    showConfirmPassword: false,
   });
   const { firstName, lastName, email, password } = formData;
 
   const [error, setError] = useState({ hasError: false, message: "" });
+
+  const { isLoggedIn, setIsLoggedIn, setUserDetails } = useContext(AuthContext);
+
   const navigate = useNavigate();
+
   const signupHandler = async (e) => {
     e.preventDefault();
     try {
       setError({ hasError: false, message: "" });
       if (
         formData.password.length > 0 &&
-        formData.password === formData.cPassword
+        formData.password === formData.confirmPassword
       ) {
         const response = await signUpService(
           firstName,
@@ -33,7 +38,16 @@ export function SignUp() {
         );
 
         if (response.status === 201) {
-          navigate("/login");
+          const response = await loginService(email, password);
+          setIsLoggedIn(true);
+          setUserDetails(response?.data?.foundUser);
+
+          localStorage.setItem("encodedToken", response?.data?.encodedToken);
+          localStorage.setItem(
+            "userDetails",
+            JSON.stringify(response?.data?.foundUser)
+          );
+          navigate("/");
         }
       } else {
         setError({
@@ -45,8 +59,16 @@ export function SignUp() {
       setError({ hasError: true, message: "Account Already Exists!" });
     }
   };
+
+  // Signup inaccessable if loggedin
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigate("/");
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isLoggedIn]);
   return (
-    <form onSubmit={signupHandler} autoComplete="off" action="">
+    <form onSubmit={signupHandler} spellCheck="false" autoComplete="off">
       <div className="signup-container">
         <h2>Sign up</h2>
 
@@ -87,7 +109,7 @@ export function SignUp() {
           onChange={(e) =>
             setFormData((prev) => ({ ...prev, password: e.target.value }))
           }
-          type={formData.showPass ? "text" : "password"}
+          type={formData.showPassword ? "text" : "password"}
           name=""
           id="password"
         />
@@ -95,7 +117,10 @@ export function SignUp() {
           <input
             type="checkbox"
             onChange={() =>
-              setFormData((prev) => ({ ...prev, showPass: !prev.showCPass }))
+              setFormData((prev) => ({
+                ...prev,
+                showPassword: !prev.showConfirmPassword,
+              }))
             }
           />
           <label>Show Password</label>
@@ -103,19 +128,25 @@ export function SignUp() {
         <label htmlFor="password">Confirm Password</label>
         <input
           required
-          value={formData.cPassword}
+          value={formData.confirmPassword}
           onChange={(e) =>
-            setFormData((prev) => ({ ...prev, cPassword: e.target.value }))
+            setFormData((prev) => ({
+              ...prev,
+              confirmPassword: e.target.value,
+            }))
           }
-          type={formData.showCPass ? "text" : "password"}
+          type={formData.showConfirmPassword ? "text" : "password"}
           name=""
-          id="cPassword"
+          id="confirmPassword"
         />
         <div className="show-pass-container">
           <input
             type="checkbox"
             onChange={() =>
-              setFormData((prev) => ({ ...prev, showCPass: !prev.showCPass }))
+              setFormData((prev) => ({
+                ...prev,
+                showConfirmPassword: !prev.showConfirmPassword,
+              }))
             }
           />
           <label>Show Password</label>

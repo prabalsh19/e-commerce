@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { CartContext, AuthContext } from "../../../context/";
 import Logo from "../../../assets/img/Logo.png";
 import "./CartSummary.css";
-import { toastHandler } from "../../../utils/Toast";
+import { toastHandler } from "../../../utils/toast";
 
 function CartSummary({ selectedAddress }) {
   const {

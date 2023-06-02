@@ -3,7 +3,7 @@ import {
   addToWishlistService,
   deleteFromWishlistService,
 } from "../services/services";
-import { toastHandler } from "../utils/Toast";
+import { toastHandler } from "../utils/toast";
 
 export const WishlistContext = createContext();
 

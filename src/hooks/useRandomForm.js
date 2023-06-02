@@ -1,6 +1,6 @@
 import { faker } from "@faker-js/faker";
 import { v4 as uuid } from "uuid";
-import { state as stateArray } from "../utils/Constants";
+import { state as stateArray } from "../utils/constants";
 
 export function useRandomForm() {
   function getRandomFormData() {

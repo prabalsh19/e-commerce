@@ -1,4 +1,4 @@
-import { ProductCategory } from "./component/productCategory/ProductCategory";
+import { ProductCategory } from "./component/ProductCategory/ProductCategory";
 import Carousel from "./component/Carousel/Carousel";
 
 export function Home() {

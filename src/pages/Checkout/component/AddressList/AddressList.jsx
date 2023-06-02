@@ -1,9 +1,9 @@
 import "./AddressList.css";
 import { useContext } from "react";
-import { addressContext } from "../../../../context";
+import { AddressContext } from "../../../../context";
 
 function AddressList({ selectedAddress }) {
-  const { addresses } = useContext(addressContext);
+  const { addresses } = useContext(AddressContext);
 
   return (
     <div className="addresses-container">

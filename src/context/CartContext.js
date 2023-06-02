@@ -5,7 +5,7 @@ import {
   cartQuantityService,
   deleteFromCartService,
 } from "../services/services";
-import { toastHandler } from "../utils/Toast";
+import { toastHandler } from "../utils/toast";
 
 export const CartContext = createContext();
 

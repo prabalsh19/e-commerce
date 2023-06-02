@@ -2,7 +2,7 @@ import { useState } from "react";
 import { createContext } from "react";
 import { v4 as uuid } from "uuid";
 
-export const addressContext = createContext();
+export const AddressContext = createContext();
 
 export const AddressContextProvider = ({ children }) => {
   const [addresses, setAddresses] = useState([
@@ -23,6 +23,6 @@ export const AddressContextProvider = ({ children }) => {
     setAddresses,
   };
   return (
-    <addressContext.Provider value={value}>{children}</addressContext.Provider>
+    <AddressContext.Provider value={value}>{children}</AddressContext.Provider>
   );
 };

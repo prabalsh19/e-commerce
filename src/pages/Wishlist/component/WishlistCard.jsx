@@ -6,7 +6,7 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 
 import { WishlistContext, CartContext } from "../../../context";
 import { useDisableCursor } from "../../../hooks/useDisableCursor";
-import { toastHandler } from "../../../utils/Toast";
+import { toastHandler } from "../../../utils/toast";
 
 function WishlistCard({ product }) {
   const { _id, image, productName, rating, price, oldPrice, discount } =

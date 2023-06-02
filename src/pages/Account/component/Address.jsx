@@ -1,13 +1,13 @@
 import { useContext, useState } from "react";
-import { state as stateArray } from "../../../utils/Constants";
+import { state as stateArray } from "../../../utils/constants";
 import { v4 as uuid } from "uuid";
-import { addressContext } from "../../../context";
+import { AddressContext } from "../../../context";
 import "../Account.css";
 import { useRandomForm } from "../../../hooks/useRandomForm";
-import { toastHandler } from "../../../utils/Toast";
+import { toastHandler } from "../../../utils/toast";
 
 export function Address() {
-  const { addresses, setAddresses } = useContext(addressContext);
+  const { addresses, setAddresses } = useContext(AddressContext);
   const initialForm = {
     name: "",
     mobile: "",

@@ -1,18 +1,11 @@
-import { useContext } from "react";
-import { useNavigate } from "react-router-dom";
-
 import { SearchInput } from "..";
-import { ProductContext } from "../../context";
-import "../nav/Nav.css";
+import "../Nav/Nav.css";
 
 export const MobileSearch = ({ setShowMobileNav }) => {
-  const { state, dispatch } = useContext(ProductContext);
-  const navigate = useNavigate();
   const submitHandler = (e) => {
     e.preventDefault();
+    console.log("here");
     setShowMobileNav(false);
-    navigate("/products");
-    dispatch({ type: "SEARCH", payload: state.filters.search });
   };
 
   return (

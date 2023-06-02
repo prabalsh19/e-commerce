@@ -61,7 +61,7 @@ function CartItemCard(product) {
           ) : (
             <button
               className="cart-add-to-wishlist-btn"
-              id={`${disableCursor ? "disable-cursor" : ""}`}
+              id={disableCursor ? "disable-cursor" : ""}
               onClick={() => {
                 disableCursorHandler();
                 addItemToWishlist(product);

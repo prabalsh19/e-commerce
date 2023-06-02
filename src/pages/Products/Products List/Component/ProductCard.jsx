@@ -28,7 +28,7 @@ function ProductCard({ product }) {
               disableCursorHandler();
               removeFromWishlist(_id);
             }}
-            id={`${disableCursor ? "disable-cursor" : ""}`}
+            id={disableCursor ? "disable-cursor" : ""}
             className="add-to-wishlist-btn"
             disabled={disableCursor}
           >
@@ -45,7 +45,7 @@ function ProductCard({ product }) {
             disableCursorHandler();
             addItemToWishlist(product);
           }}
-          id={`${disableCursor ? "disable-cursor" : ""}`}
+          id={disableCursor ? "disable-cursor" : ""}
           className="add-to-wishlist-btn"
           disabled={disableCursor}
         >
@@ -79,7 +79,7 @@ function ProductCard({ product }) {
           <button
             className={`add-to-cart-btn `}
             disabled={disableCursor}
-            id={`${disableCursor ? "disable-cursor" : ""}`}
+            id={disableCursor ? "disable-cursor" : ""}
           >
             GO TO CART
           </button>
@@ -87,7 +87,7 @@ function ProductCard({ product }) {
       ) : (
         <button
           className={`add-to-cart-btn `}
-          id={`${disableCursor ? "disable-cursor" : ""}`}
+          id={disableCursor ? "disable-cursor" : ""}
           disabled={disableCursor}
           onClick={() => {
             disableCursorHandler();

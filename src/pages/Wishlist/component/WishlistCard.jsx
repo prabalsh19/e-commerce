@@ -29,7 +29,7 @@ function WishlistCard({ product }) {
         <>
           <button
             className="add-to-wishlist-btn"
-            id={`${disableCursor ? "disable-cursor" : ""}`}
+            id={disableCursor ? "disable-cursor" : ""}
             onClick={() => {
               disableCursorHandler();
               removeFromWishlist(_id);
@@ -49,7 +49,7 @@ function WishlistCard({ product }) {
             disableCursorHandler();
             addItemToWishlist(product);
           }}
-          id={`${disableCursor ? "disable-cursor" : ""}`}
+          id={disableCursor ? "disable-cursor" : ""}
           disabled={disableCursor}
           className="add-to-wishlist-btn"
         >
@@ -84,14 +84,14 @@ function WishlistCard({ product }) {
             removeFromWishlist(_id);
           }}
           className="add-to-cart-btn"
-          id={`${disableCursor ? "disable-cursor" : ""}`}
+          id={disableCursor ? "disable-cursor" : ""}
           disabled={disableCursor}
         >
           REMOVE
         </button>
         <button
           className="add-to-cart-btn"
-          id={`${disableCursor ? "disable-cursor" : ""}`}
+          id={disableCursor ? "disable-cursor" : ""}
           onClick={() => {
             disableCursorHandler();
             productExistInCart

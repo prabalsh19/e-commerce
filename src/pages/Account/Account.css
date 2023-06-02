@@ -109,7 +109,10 @@ input[type="number"] {
 .addresses-list__address address {
   max-width: 60%;
 }
-
+.addresses-list__address-actions {
+  display: flex;
+  gap: 10px;
+}
 .addresses-list__address-actions button {
   width: 100%;
   padding: 5px;

@@ -6,6 +6,7 @@ import Logo from "../../../assets/img/Logo.png";
 import "./CartSummary.css";
 import { toastHandler } from "../../../utils/toast";
 import { clearCartService } from "../../../services/services";
+import { useDisableCursor } from "../../../hooks/useDisableCursor";
 
 function CartSummary({ selectedAddress }) {
   const {
@@ -19,7 +20,7 @@ function CartSummary({ selectedAddress }) {
   const { userDetails } = useContext(AuthContext);
   const { firstName, lastName, email } = userDetails || {};
   const navigate = useNavigate();
-
+  const [disableCursor, disableCursorHandler] = useDisableCursor();
   const loadScript = async (url) => {
     return new Promise((resolve) => {
       const script = document.createElement("script");
@@ -102,7 +103,15 @@ function CartSummary({ selectedAddress }) {
         <span>Total Amount</span>
         <span>₹{totalPrice + totalDiscount}</span>
       </div>
-      <button className="checkout-btn" onClick={displayRazorpay}>
+      <button
+        className="checkout-btn"
+        id={disableCursor ? "disable-cursor" : ""}
+        disabled={disableCursor}
+        onClick={() => {
+          displayRazorpay();
+          disableCursorHandler();
+        }}
+      >
         CHECK OUT
       </button>
     </div>

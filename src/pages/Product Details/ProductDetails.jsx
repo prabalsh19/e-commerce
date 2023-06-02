@@ -76,7 +76,7 @@ export function ProductDetails() {
             ) : (
               <button
                 className="product-details__add-to-cart-btn"
-                id={`${disableCursor ? "disable-cursor" : ""}`}
+                id={disableCursor ? "disable-cursor" : ""}
                 disabled={disableCursor}
                 onClick={() => {
                   disableCursorHandler();
@@ -98,7 +98,7 @@ export function ProductDetails() {
                   disableCursorHandler();
                   addItemToWishlist(selectedProduct);
                 }}
-                id={`${disableCursor ? "disable-cursor" : ""}`}
+                id={disableCursor ? "disable-cursor" : ""}
               >
                 ADD TO WISHLIST
               </button>

@@ -44,6 +44,11 @@ export function Address() {
   const deleteAddress = (id) => {
     setAddresses((prev) => prev.filter((item) => item.id !== id));
   };
+  const editAddress = (id) => {
+    setFormData(() => addresses.find((address) => address.id === id));
+    window.scroll(20, 20);
+    deleteAddress(id);
+  };
   return (
     <>
       <form onSubmit={submitHandler} spellCheck="false" autoComplete="off">
@@ -137,6 +142,7 @@ export function Address() {
             <span>{city}</span>
             <span>{state}</span>
             <div className="addresses-list__address-actions">
+              <button onClick={() => editAddress(id)}>EDIT</button>
               <button onClick={() => deleteAddress(id)}>Delete</button>
             </div>
           </div>

@@ -119,7 +119,7 @@ export function SignUp() {
             onChange={() =>
               setFormData((prev) => ({
                 ...prev,
-                showPassword: !prev.showConfirmPassword,
+                showPassword: !prev.showPassword,
               }))
             }
           />

@@ -1,4 +1,4 @@
-import { useEffect, useReducer, createContext } from "react";
+import { useEffect, useReducer, createContext, useState } from "react";
 import { getProductsService } from "../services/services";
 
 export const ProductContext = createContext();
@@ -97,6 +97,7 @@ const reducer = (state, action) => {
 };
 
 export const ProductContextProvider = ({ children }) => {
+  const [isLoading, setIsLoading] = useState(false);
   const [state, dispatch] = useReducer(reducer, {
     products: [],
     productCategoryList: [],
@@ -110,8 +111,10 @@ export const ProductContextProvider = ({ children }) => {
   });
   const initialProducts = async () => {
     try {
+      setIsLoading(true);
       const response = await getProductsService();
       dispatch({ type: "INITIAL_STATE", payload: response.data.products });
+      setIsLoading(false);
     } catch (e) {
       console.error(e);
     }
@@ -162,6 +165,7 @@ export const ProductContextProvider = ({ children }) => {
 
   const value = {
     filteredArray,
+    isLoading,
     state,
     dispatch,
   };

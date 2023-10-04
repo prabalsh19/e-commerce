@@ -20,8 +20,6 @@ The E-commerce Web Application is an online platform that allows users to browse
 
 ## Features
 
-### Customer-Facing Features
-
 #### 1. Home Page
 
 - Display featured products and promotions.
@@ -77,18 +75,6 @@ The E-commerce Web Application is an online platform that allows users to browse
 - Enter shipping and payment information.
 - Confirm the order and receive an order confirmation.
 
-### Seller-Facing Features
-
-#### 1. Product Management
-
-- Add new products for sale.
-- Update product information (e.g., price, description).
-- Remove products from the catalog.
-
-#### 2. Order Management
-
-- View and manage customer orders.
-- Mark orders as shipped or completed.
 
 
 ## Contributing

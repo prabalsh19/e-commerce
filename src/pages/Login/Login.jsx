@@ -60,7 +60,7 @@ export function Login() {
     }
   };
   const guestLoginHandler = () => {
-    setLoginInfo({ email: "adarshbalika@gmail.com", password: "adarshbalika" });
+    setLoginInfo({ email: "prabalsh19@gmail.com", password: "123456789" });
   };
 
   // Login inaccessable if loggedin

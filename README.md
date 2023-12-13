@@ -1,6 +1,6 @@
 # E-commerce Web Application
 
-The E-commerce Web Application is an online platform that allows users to browse, search, and purchase a variety of products. It provides a comprehensive set of features for both customers and sellers to enable a seamless shopping experience.
+The E-commerce Web Application is an online platform that allows users to browse, search, and purchase a variety of audio products. 
 
 ## Technologies Used
 

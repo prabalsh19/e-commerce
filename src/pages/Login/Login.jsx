@@ -52,6 +52,7 @@ export function Login() {
         ? navigate(location?.state?.location?.pathname)
         : navigate("/");
     } catch (e) {
+      console.log("e",e)
       setIsLoggedIn(false);
       setError(() => ({
         hasError: true,
